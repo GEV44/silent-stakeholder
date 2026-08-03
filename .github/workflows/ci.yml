@@ -27,12 +27,12 @@ jobs:
       PYTHONDONTWRITEBYTECODE: "1"
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
@@ -55,7 +55,7 @@ jobs:
         run: python -m ruff check --no-cache --select S --ignore S311 src scripts report.py
 
       - name: Type safety
-        run: python -m mypy src scripts report.py
+        run: python -m mypy --python-version "${{ matrix.python-version }}" src scripts report.py
 
       - name: Independent error lint
         run: pylint --errors-only $(git ls-files '*.py')
