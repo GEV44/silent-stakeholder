@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64"
+     role="img" aria-label="The Silent Stakeholder">
+  <title>The Silent Stakeholder — app icon</title>
+  <desc>Square app/favicon form. Heavier strokes and a larger inner void so the punched
+  bubble still reads at 16px.</desc>
+  <rect width="64" height="64" rx="14" fill="#101623"/>
+  <path fill="#f1f4f9" fill-rule="evenodd"
+        d="M10 14 h44 a4 4 0 0 1 4 4 v22 a4 4 0 0 1 -4 4 h-24 l-10 10 v-10 h-10
+           a4 4 0 0 1 -4 -4 v-22 a4 4 0 0 1 4 -4 z
+           M26 24 h18 a3 3 0 0 1 3 3 v7 a3 3 0 0 1 -3 3 h-7 l-6 6 v-6 h-5
+           a3 3 0 0 1 -3 -3 v-7 a3 3 0 0 1 3 -3 z"/>
+</svg>

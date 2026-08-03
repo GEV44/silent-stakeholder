@@ -1,0 +1,103 @@
+{
+  "artifacts": {
+    "gaps.json": {
+      "schema_version": "1.0",
+      "sha256": "7513b73d92f37ce45f7ad92312f5e3b8a5ddd4a5dd63f13d0628d4cbef9865e2"
+    },
+    "needs.json": {
+      "schema_version": "1.0",
+      "sha256": "3b77051492bfe94ee5f1f14d622ccf7781bb9bf1ffb61b4ba933c01f7fdf6a3d"
+    },
+    "roadmap.json": {
+      "schema_version": "1.0",
+      "sha256": "6d8756909679d5c2e3a96c822f5f66104603c2c953bb6357d301fb9b89a685e7"
+    },
+    "signals.json": {
+      "schema_version": "1.0",
+      "sha256": "71d2f9d79bec8e7d492b1b1af84745f2b1a8a26df826bd8c4e513b55c9917999"
+    },
+    "top_gaps.json": {
+      "schema_version": "1.0",
+      "sha256": "1cc36a13e7861fc167decff33f36dbb730e81565da94c15229792efc87025f16"
+    },
+    "verification.json": {
+      "schema_version": "1.0",
+      "sha256": "185530b09ef9d1dec61d40f6061f98333019a9396fde37d54eb55973e47fc3c4"
+    }
+  },
+  "calibration": {
+    "calibrated": false,
+    "label_count": 0,
+    "status": "uncalibrated_evidence_score_not_probability"
+  },
+  "code_version": "a6b7553e74302582b20890e49203acbc7ebb44e2",
+  "counts": {
+    "candidate_gaps": 4,
+    "needs": 4,
+    "roadmap": 5,
+    "signals": 26,
+    "signals_assigned_to_needs": 26,
+    "signals_unassigned": 0,
+    "top_gaps": 4,
+    "top_k_requested": 5,
+    "top_k_shortfall": 1,
+    "top_k_shortfall_reason": "fewer verified, non-covered, uniquely titled candidates than requested",
+    "verified_gaps": 4
+  },
+  "embedding": {
+    "backend": "HashingEmbedder",
+    "model": null,
+    "requested_backend": "hashing"
+  },
+  "generated_at": "2026-08-03T09:41:15.195717+00:00",
+  "inputs": {
+    "roadmap_sha256": "6d8756909679d5c2e3a96c822f5f66104603c2c953bb6357d301fb9b89a685e7",
+    "signals_sha256": "71d2f9d79bec8e7d492b1b1af84745f2b1a8a26df826bd8c4e513b55c9917999"
+  },
+  "limitations": [
+    "Public GitHub artifacts are not a complete internal roadmap.",
+    "Need boundaries are one deterministic clustering lens; closely related symptoms may be grouped, and no alternate-clustering omission claim is made.",
+    "Uncalibrated scores within 1% of a band's highest score share a display band. Bands expose near-ties; neither within-band order nor cross-band position proves validated priority separation without labels or stability analysis.",
+    "Evidence score is uncalibrated and is not a probability.",
+    "Synthetic fixture dates are pinned for reproducibility; they are not historical user evidence or current product findings."
+  ],
+  "llm": {
+    "backend": "disabled"
+  },
+  "llm_observed": {
+    "calls": 0,
+    "status": "not_requested"
+  },
+  "mode": "demo_fixture",
+  "reproducibility": {
+    "inference_contract_files": [
+      "src/embedding.py",
+      "src/needs.py",
+      "src/gaps.py",
+      "src/confidence.py",
+      "src/verify.py",
+      "src/rank.py",
+      "src/run.py"
+    ],
+    "inference_contract_sha256": "8d29e612131e7078fcae48f7f671325b66e4ed9baab7ae1a71406890e541ac42",
+    "pipeline_config_sha256": "d4ac9ee65e9348d5cc140757d777539551ea9dff3cf812abbda373a364ea5d0c",
+    "random_seed": 42
+  },
+  "schema_version": "1.0",
+  "scope": {
+    "analysis_as_of": "2026-07-31T12:00:00+00:00",
+    "analysis_mode": "exploratory_snapshot",
+    "claim": {
+      "absence_means": "no matching artifact in the inspected public scope",
+      "private_roadmap_observed": false
+    },
+    "evidence_window": {
+      "end": "2026-06-15T09:00:00+00:00",
+      "start": "2026-06-15T09:00:00+00:00"
+    },
+    "product": "ExamplePress for Android (synthetic)",
+    "public_planning_proxy": true,
+    "roadmap_snapshot": "synthetic fixture",
+    "signal_window": "synthetic fixture"
+  }
+}

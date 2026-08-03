@@ -1,0 +1,1133 @@
+{
+  "gaps": [
+    {
+      "calibrated_confidence": null,
+      "critique": "DEFENSIBLE",
+      "evidence": {
+        "quotes": [
+          {
+            "end": 82,
+            "id": "S000001",
+            "span": "Every photo upload stalls halfway and I must start the whole gallery upload again.",
+            "start": 0
+          },
+          {
+            "end": 77,
+            "id": "S000002",
+            "span": "Uploading images fails silently and the media gallery stays completely empty.",
+            "start": 0
+          },
+          {
+            "end": 74,
+            "id": "S000003",
+            "span": "The media upload queue freezes and I cannot upload any more photos at all.",
+            "start": 0
+          },
+          {
+            "end": 77,
+            "id": "S000004",
+            "span": "If one picture in a gallery upload fails, the entire batch of images is lost.",
+            "start": 0
+          },
+          {
+            "end": 73,
+            "id": "S000005",
+            "span": "Photo uploads stall on hotel wifi with no way to resume the media upload.",
+            "start": 0
+          },
+          {
+            "end": 74,
+            "id": "S000006",
+            "span": "Large image uploads freeze the whole app while the gallery uploads photos.",
+            "start": 0
+          },
+          {
+            "end": 75,
+            "id": "S000007",
+            "span": "The upload queue for photos and images stalls at ninety percent every time.",
+            "start": 0
+          },
+          {
+            "end": 75,
+            "id": "S000008",
+            "span": "Media uploads from my camera roll fail and the gallery shows broken images.",
+            "start": 0
+          }
+        ],
+        "roadmap_quote": {
+          "id": "R000001",
+          "span": "Show an error banner when uploads fail or stall and block the publishing workflow."
+        },
+        "signal_ids": [
+          "S000001",
+          "S000002",
+          "S000003",
+          "S000004",
+          "S000005",
+          "S000006",
+          "S000007",
+          "S000008"
+        ]
+      },
+      "features": {
+        "agree": 0.75,
+        "coh": 0.234877,
+        "cons": 0.9,
+        "div": 0.0,
+        "rec": 0.916134,
+        "selfc": 0.5,
+        "sent": 0.568021,
+        "vol": 0.721698
+      },
+      "id": "G79b3b9275d41",
+      "jtbd": "When using the product, users need to upload media in the background and recover individual failures without restarting.",
+      "kano_class": "basic",
+      "latent_need": "Recoverable media uploads",
+      "latent_similarity": 0.32958,
+      "matched_roadmap_id": "R000001",
+      "metadata": {
+        "adjudication": "deterministic",
+        "as_of": "2026-07-31T12:00:00+00:00",
+        "calibrator": null,
+        "confidence_fusion": "analytic-only",
+        "confidence_status": "uncalibrated_evidence_score_not_probability",
+        "counterevidence": {
+          "basis": "cited signal sentiment > 0.35",
+          "count": 0,
+          "detail": [],
+          "note": "Signals this gap cites that read as positive about the same area. They are already reflected in the `cons` feature; they are listed here so the dissent can be checked, not just counted.",
+          "share_of_evidence": 0.0,
+          "signal_ids": []
+        },
+        "deterministic_order_only": true,
+        "evidence_score": 0.58821108603,
+        "feature_diagnostics": {
+          "constant_features": {
+            "agree": 0.75,
+            "div": 0.0,
+            "rec": 0.916134,
+            "selfc": 0.5
+          },
+          "discriminating_features": {
+            "coh": 0.12998,
+            "cons": 0.025,
+            "sent": 0.242083,
+            "vol": 0.082547
+          },
+          "evidence_score_range": 0.019345,
+          "note": "Constant features carry no discriminating information on this set. On a single-source offline run this is expected: 'div' requires more than one signal source and 'selfc' requires LLM sampling. They are reported, not silently renormalized away.",
+          "weight_on_constant_features": 0.4783
+        },
+        "framing": {
+          "candidate_pool": 5,
+          "coverage_margin": 1.0,
+          "coverage_threshold": 0.5,
+          "eligible": true,
+          "job_corpus_scope": 5,
+          "job_coverage": 0.0,
+          "job_coverage_corpus": 0.0,
+          "job_item_id": null,
+          "job_item_id_corpus": null,
+          "job_item_index": null,
+          "job_matched_terms": [],
+          "job_matched_terms_corpus": [],
+          "job_missing_terms": [
+            "background",
+            "failur",
+            "individual",
+            "recov",
+            "restart"
+          ],
+          "job_probe": [
+            "background",
+            "failur",
+            "individual",
+            "recov",
+            "restart"
+          ],
+          "margin_floor": 0.1,
+          "misunderstood": true,
+          "probe_size": 5,
+          "rationale": "roadmap item R000001 covers 5 of 5 terms distinctive to the reported symptom (100% of IDF mass), while no candidate covers a majority of the job's 5 distinctive terms (best 0%); same measure, same 50% cutoff, both sides, margin 100% clears the 10% floor (REQ-E-03)",
+          "symptom_coverage": 1.0,
+          "symptom_item_id": "R000001",
+          "symptom_item_index": 0,
+          "symptom_matched_terms": [
+            "block",
+            "fail",
+            "stall",
+            "workflow",
+            "publish"
+          ],
+          "symptom_missing_terms": [],
+          "symptom_probe": [
+            "block",
+            "fail",
+            "stall",
+            "workflow",
+            "publish"
+          ]
+        },
+        "priority_band": 1,
+        "priority_band_policy": "within_1_percent_of_band_high_score",
+        "priority_is_low": false,
+        "priority_reason_diagnostics": {
+          "low_priority_items": 2,
+          "low_priority_share": 0.4,
+          "non_discriminating_reasons": [],
+          "note": "2 of 5 roadmap items satisfy at least one low-priority reason, so UNDER-PRIORITIZED is a weak signal on this corpus. Reasons listed in `non_discriminating_reasons` fire on 90%+ of candidates and describe how this repository is run, not this issue. Weigh the explicit priority label and the tier above them.",
+          "reason_firing_rate": {
+            "ingest priority metadata marks the item low": 0.4,
+            "no committed release milestone": 0.4,
+            "priority score is at most 0.35": 0.4,
+            "priority tier is backlog": 0.4
+          },
+          "roadmap_items": 5
+        },
+        "priority_reasons": [],
+        "priority_score_semantics": "review-derived priority proxy; not survey-validated ODI",
+        "public_planning_state": "PARTIAL_COVERAGE_HYPOTHESIS",
+        "rank_basis": "uncalibrated_evidence_score_not_probability",
+        "rank_separation": "not_established_within_1_percent_band",
+        "rationale": "roadmap item R000001 covers 5 of 5 terms distinctive to the reported symptom (100% of IDF mass), while no candidate covers a majority of the job's 5 distinctive terms (best 0%); same measure, same 50% cutoff, both sides, margin 100% clears the 10% floor (REQ-E-03)",
+        "raw_confidence": 0.58821108603,
+        "score_breakdown": {
+          "analytic_score": 0.588211,
+          "evidence_score": 0.58821108603,
+          "formula": "sigmoid(intercept + sum(weight x value)) (no LLM sampling observed, so no fusion)",
+          "fusion": "analytic-only",
+          "intercept": -2.25,
+          "logit": 0.356575,
+          "not_a_probability": "Uncalibrated evidence score. No adjudicated labels exist for this run, so this number is not a probability and must not be read as one.",
+          "self_consistency": 0.5,
+          "terms": [
+            {
+              "contribution": 0.721698,
+              "feature": "vol",
+              "value": 0.721698,
+              "weight": 1.0
+            },
+            {
+              "contribution": 0.0,
+              "feature": "div",
+              "value": 0.0,
+              "weight": 0.5
+            },
+            {
+              "contribution": 0.0,
+              "feature": "sent",
+              "value": 0.568021,
+              "weight": 0.0
+            },
+            {
+              "contribution": 0.0,
+              "feature": "rec",
+              "value": 0.916134,
+              "weight": 0.0
+            },
+            {
+              "contribution": 0.9,
+              "feature": "cons",
+              "value": 0.9,
+              "weight": 1.0
+            },
+            {
+              "contribution": 0.75,
+              "feature": "agree",
+              "value": 0.75,
+              "weight": 1.0
+            },
+            {
+              "contribution": 0.234877,
+              "feature": "coh",
+              "value": 0.234877,
+              "weight": 1.0
+            }
+          ]
+        },
+        "score_margin_to_previous": null,
+        "temporal_scope": {
+          "as_of": "2026-07-31T12:00:00+00:00",
+          "evidence_end": "2026-06-15T09:00:00+00:00",
+          "evidence_start": "2026-06-15T09:00:00+00:00"
+        },
+        "thresholds": {
+          "candidate_pool": 10,
+          "framing_coverage": 0.5,
+          "high": 0.62,
+          "low": 0.38,
+          "min_probe_terms": 3
+        },
+        "verdict_stability": {
+          "borderline": false,
+          "flips_to": null,
+          "governing_gate": "framing_coverage",
+          "margin_to_flip": 0.5,
+          "note": "Decided by one-sided framing coverage at cutoff 50%, not by the similarity gate -- robust to any `low` value. Closer margin is symptom_coverage (0.500 from symptom coverage dropping below the cutoff); the verdict falls back to IGNORED (from `similarity` alone) if that margin closes."
+        },
+        "verification": {
+          "issues": [],
+          "quote_count": 8,
+          "valid": true,
+          "valid_quote_count": 8
+        },
+        "weakest_assumption": {
+          "all_applicable": [
+            "confidence is uncalibrated"
+          ],
+          "factor": "confidence is uncalibrated",
+          "note": "Derived from measured fields only. Stated by us rather than left for a reader to find.",
+          "severity": 1,
+          "value": null,
+          "what_would_change_it": "adjudicated labels sufficient to fit a calibrator",
+          "why": "No adjudicated labels exist for this run, so the evidence score is an ordering signal and not a probability."
+        }
+      },
+      "need_id": "N51b390fef55f",
+      "opportunity_score": 14.142187,
+      "rank": 1,
+      "rank_score": 8.318591,
+      "similarity": 0.375372,
+      "symptom_similarity": 0.642014,
+      "verdict": "MISUNDERSTOOD",
+      "why_rank": "priority proxy 14.14 × evidence score 0.588 = 8.319; not a probability. Display band 1; order within this 1% score band is a deterministic tie-break, not evidence of meaningful separation."
+    },
+    {
+      "calibrated_confidence": null,
+      "critique": "DEFENSIBLE",
+      "evidence": {
+        "quotes": [
+          {
+            "end": 76,
+            "id": "S000009",
+            "span": "My draft disappeared after the editor tried to sync a page I had just saved.",
+            "start": 0
+          },
+          {
+            "end": 75,
+            "id": "S000010",
+            "span": "Edits to a long post do not save and the draft reverts to an older version.",
+            "start": 0
+          },
+          {
+            "end": 72,
+            "id": "S000011",
+            "span": "The editor lost a page when it tried to publish and then failed to sync.",
+            "start": 0
+          },
+          {
+            "end": 81,
+            "id": "S000012",
+            "span": "Drafts saved on the train never sync, so the post is gone when I open the editor.",
+            "start": 0
+          },
+          {
+            "end": 74,
+            "id": "S000013",
+            "span": "I publish a post and the editor silently drops the last paragraph I saved.",
+            "start": 0
+          },
+          {
+            "end": 72,
+            "id": "S000014",
+            "span": "Every long draft I edit fails to save and I retype the whole page again.",
+            "start": 0
+          }
+        ],
+        "signal_ids": [
+          "S000009",
+          "S000010",
+          "S000011",
+          "S000012",
+          "S000013",
+          "S000014"
+        ]
+      },
+      "features": {
+        "agree": 0.75,
+        "coh": 0.299262,
+        "cons": 0.875,
+        "div": 0.0,
+        "rec": 0.916134,
+        "selfc": 0.5,
+        "sent": 0.635139,
+        "vol": 0.639151
+      },
+      "id": "G350190638f4b",
+      "jtbd": "When using the product, users need to preserve edits across drafting, syncing, and publishing transitions.",
+      "kano_class": "basic",
+      "latent_need": "Lossless drafting and publishing",
+      "latent_similarity": 0.572854,
+      "matched_roadmap_id": "R000002",
+      "metadata": {
+        "adjudication": "deterministic",
+        "as_of": "2026-07-31T12:00:00+00:00",
+        "calibrator": null,
+        "confidence_fusion": "analytic-only",
+        "confidence_status": "uncalibrated_evidence_score_not_probability",
+        "counterevidence": {
+          "basis": "cited signal sentiment > 0.35",
+          "count": 0,
+          "detail": [],
+          "note": "Signals this gap cites that read as positive about the same area. They are already reflected in the `cons` feature; they are listed here so the dissent can be checked, not just counted.",
+          "share_of_evidence": 0.0,
+          "signal_ids": []
+        },
+        "deterministic_order_only": true,
+        "evidence_score": 0.57771811636,
+        "feature_diagnostics": {
+          "constant_features": {
+            "agree": 0.75,
+            "div": 0.0,
+            "rec": 0.916134,
+            "selfc": 0.5
+          },
+          "discriminating_features": {
+            "coh": 0.12998,
+            "cons": 0.025,
+            "sent": 0.242083,
+            "vol": 0.082547
+          },
+          "evidence_score_range": 0.019345,
+          "note": "Constant features carry no discriminating information on this set. On a single-source offline run this is expected: 'div' requires more than one signal source and 'selfc' requires LLM sampling. They are reported, not silently renormalized away.",
+          "weight_on_constant_features": 0.4783
+        },
+        "framing": {
+          "candidate_pool": 5,
+          "coverage_margin": -0.726819,
+          "coverage_threshold": 0.5,
+          "eligible": true,
+          "job_corpus_scope": 5,
+          "job_coverage": 1.0,
+          "job_coverage_corpus": 1.0,
+          "job_item_id": "R000002",
+          "job_item_id_corpus": "R000002",
+          "job_item_index": 1,
+          "job_matched_terms": [
+            "edit",
+            "preserve",
+            "transition"
+          ],
+          "job_matched_terms_corpus": [
+            "edit",
+            "preserve",
+            "transition"
+          ],
+          "job_missing_terms": [],
+          "job_probe": [
+            "edit",
+            "preserve",
+            "transition"
+          ],
+          "margin_floor": 0.1,
+          "misunderstood": false,
+          "probe_size": 3,
+          "rationale": "symptom coverage 27% (1/3 terms), job coverage 100% (3/3); no one-sided majority at the 50% cutoff",
+          "symptom_coverage": 0.273181,
+          "symptom_item_id": "R000001",
+          "symptom_item_index": 0,
+          "symptom_matched_terms": [
+            "fail"
+          ],
+          "symptom_missing_terms": [
+            "chang",
+            "save"
+          ],
+          "symptom_probe": [
+            "chang",
+            "save",
+            "fail"
+          ]
+        },
+        "priority_band": 1,
+        "priority_band_policy": "within_1_percent_of_band_high_score",
+        "priority_is_low": true,
+        "priority_reason_diagnostics": {
+          "low_priority_items": 2,
+          "low_priority_share": 0.4,
+          "non_discriminating_reasons": [],
+          "note": "2 of 5 roadmap items satisfy at least one low-priority reason, so UNDER-PRIORITIZED is a weak signal on this corpus. Reasons listed in `non_discriminating_reasons` fire on 90%+ of candidates and describe how this repository is run, not this issue. Weigh the explicit priority label and the tier above them.",
+          "reason_firing_rate": {
+            "ingest priority metadata marks the item low": 0.4,
+            "no committed release milestone": 0.4,
+            "priority score is at most 0.35": 0.4,
+            "priority tier is backlog": 0.4
+          },
+          "roadmap_items": 5
+        },
+        "priority_reasons": [
+          "ingest priority metadata marks the item low",
+          "priority tier is backlog",
+          "priority score is at most 0.35",
+          "no committed release milestone"
+        ],
+        "priority_score_semantics": "review-derived priority proxy; not survey-validated ODI",
+        "public_planning_state": "ACKNOWLEDGED_UNSCHEDULED",
+        "rank_basis": "uncalibrated_evidence_score_not_probability",
+        "rank_separation": "not_established_within_1_percent_band",
+        "rationale": "best roadmap match is explicitly or implicitly low priority",
+        "raw_confidence": 0.57771811636,
+        "score_breakdown": {
+          "analytic_score": 0.577718,
+          "evidence_score": 0.57771811636,
+          "formula": "sigmoid(intercept + sum(weight x value)) (no LLM sampling observed, so no fusion)",
+          "fusion": "analytic-only",
+          "intercept": -2.25,
+          "logit": 0.313413,
+          "not_a_probability": "Uncalibrated evidence score. No adjudicated labels exist for this run, so this number is not a probability and must not be read as one.",
+          "self_consistency": 0.5,
+          "terms": [
+            {
+              "contribution": 0.639151,
+              "feature": "vol",
+              "value": 0.639151,
+              "weight": 1.0
+            },
+            {
+              "contribution": 0.0,
+              "feature": "div",
+              "value": 0.0,
+              "weight": 0.5
+            },
+            {
+              "contribution": 0.0,
+              "feature": "sent",
+              "value": 0.635139,
+              "weight": 0.0
+            },
+            {
+              "contribution": 0.0,
+              "feature": "rec",
+              "value": 0.916134,
+              "weight": 0.0
+            },
+            {
+              "contribution": 0.875,
+              "feature": "cons",
+              "value": 0.875,
+              "weight": 1.0
+            },
+            {
+              "contribution": 0.75,
+              "feature": "agree",
+              "value": 0.75,
+              "weight": 1.0
+            },
+            {
+              "contribution": 0.299262,
+              "feature": "coh",
+              "value": 0.299262,
+              "weight": 1.0
+            }
+          ]
+        },
+        "score_margin_to_previous": 0.002896,
+        "temporal_scope": {
+          "as_of": "2026-07-31T12:00:00+00:00",
+          "evidence_end": "2026-06-15T09:00:00+00:00",
+          "evidence_start": "2026-06-15T09:00:00+00:00"
+        },
+        "thresholds": {
+          "candidate_pool": 10,
+          "framing_coverage": 0.5,
+          "high": 0.62,
+          "low": 0.38,
+          "min_probe_terms": 3
+        },
+        "verdict_stability": {
+          "borderline": false,
+          "flips_to": "IGNORED",
+          "governing_gate": "low",
+          "margin_to_flip": 0.309827,
+          "note": "Best similarity 0.690 against gate 0.38. This verdict becomes IGNORED if `low` rose above 0.690. The gate is an unfitted default, so treat a small margin as a soft label. Rank position is unaffected -- it comes from the priority proxy and evidence score."
+        },
+        "verification": {
+          "issues": [],
+          "quote_count": 6,
+          "valid": true,
+          "valid_quote_count": 6
+        },
+        "weakest_assumption": {
+          "all_applicable": [
+            "confidence is uncalibrated"
+          ],
+          "factor": "confidence is uncalibrated",
+          "note": "Derived from measured fields only. Stated by us rather than left for a reader to find.",
+          "severity": 1,
+          "value": null,
+          "what_would_change_it": "adjudicated labels sufficient to fit a calibrator",
+          "why": "No adjudicated labels exist for this run, so the evidence score is an ordering signal and not a probability."
+        }
+      },
+      "need_id": "N138437378b0b",
+      "opportunity_score": 14.357343,
+      "rank": 2,
+      "rank_score": 8.294497,
+      "similarity": 0.689827,
+      "symptom_similarity": 0.166458,
+      "verdict": "UNDER-PRIORITIZED",
+      "why_rank": "priority proxy 14.36 × evidence score 0.578 = 8.294; not a probability. Display band 1; order within this 1% score band is a deterministic tie-break, not evidence of meaningful separation."
+    },
+    {
+      "calibrated_confidence": null,
+      "critique": "DEFENSIBLE",
+      "evidence": {
+        "quotes": [
+          {
+            "end": 104,
+            "id": "S000021",
+            "span": "A delayed comment notification opens the reply too late; notifications for comments need a timely reply.",
+            "start": 0
+          },
+          {
+            "end": 73,
+            "id": "S000022",
+            "span": "A notification for a deleted comment appears with no reply option at all.",
+            "start": 0
+          },
+          {
+            "end": 76,
+            "id": "S000023",
+            "span": "Notifications for new comments never open the right comment thread on reply.",
+            "start": 0
+          },
+          {
+            "end": 89,
+            "id": "S000024",
+            "span": "A comment notification does not group comment replies, so the reply conversation is slow.",
+            "start": 0
+          },
+          {
+            "end": 79,
+            "id": "S000025",
+            "span": "A reply notification opens the wrong comment and I lose the whole conversation.",
+            "start": 0
+          },
+          {
+            "end": 75,
+            "id": "S000026",
+            "span": "Comment replies I send from a notification silently vanish without warning.",
+            "start": 0
+          }
+        ],
+        "signal_ids": [
+          "S000021",
+          "S000022",
+          "S000023",
+          "S000024",
+          "S000025",
+          "S000026"
+        ]
+      },
+      "features": {
+        "agree": 0.75,
+        "coh": 0.364857,
+        "cons": 0.875,
+        "div": 0.0,
+        "rec": 0.916134,
+        "selfc": 0.5,
+        "sent": 0.550833,
+        "vol": 0.639151
+      },
+      "id": "G4ff6d985978a",
+      "jtbd": "When using the product, users need to review and respond to audience activity without losing context.",
+      "kano_class": "basic",
+      "latent_need": "Actionable engagement notifications",
+      "latent_similarity": 0.136214,
+      "matched_roadmap_id": "R000003",
+      "metadata": {
+        "adjudication": "deterministic",
+        "as_of": "2026-07-31T12:00:00+00:00",
+        "calibrator": null,
+        "confidence_fusion": "analytic-only",
+        "confidence_status": "uncalibrated_evidence_score_not_probability",
+        "counterevidence": {
+          "basis": "cited signal sentiment > 0.35",
+          "count": 0,
+          "detail": [],
+          "note": "Signals this gap cites that read as positive about the same area. They are already reflected in the `cons` feature; they are listed here so the dissent can be checked, not just counted.",
+          "share_of_evidence": 0.0,
+          "signal_ids": []
+        },
+        "deterministic_order_only": false,
+        "evidence_score": 0.593633822334,
+        "feature_diagnostics": {
+          "constant_features": {
+            "agree": 0.75,
+            "div": 0.0,
+            "rec": 0.916134,
+            "selfc": 0.5
+          },
+          "discriminating_features": {
+            "coh": 0.12998,
+            "cons": 0.025,
+            "sent": 0.242083,
+            "vol": 0.082547
+          },
+          "evidence_score_range": 0.019345,
+          "note": "Constant features carry no discriminating information on this set. On a single-source offline run this is expected: 'div' requires more than one signal source and 'selfc' requires LLM sampling. They are reported, not silently renormalized away.",
+          "weight_on_constant_features": 0.4783
+        },
+        "framing": {
+          "candidate_pool": 5,
+          "coverage_margin": 0.130694,
+          "coverage_threshold": 0.5,
+          "eligible": true,
+          "job_corpus_scope": 5,
+          "job_coverage": 0.0,
+          "job_coverage_corpus": 0.0,
+          "job_item_id": null,
+          "job_item_id_corpus": null,
+          "job_item_index": null,
+          "job_matched_terms": [],
+          "job_matched_terms_corpus": [],
+          "job_missing_terms": [
+            "activity",
+            "audience",
+            "context",
+            "losing",
+            "respond",
+            "review"
+          ],
+          "job_probe": [
+            "activity",
+            "audience",
+            "context",
+            "losing",
+            "respond",
+            "review"
+          ],
+          "margin_floor": 0.1,
+          "misunderstood": false,
+          "probe_size": 6,
+          "rationale": "symptom coverage 13% (1/6 terms), job coverage 0% (0/6); no one-sided majority at the 50% cutoff",
+          "symptom_coverage": 0.130694,
+          "symptom_item_id": "R000001",
+          "symptom_item_index": 0,
+          "symptom_matched_terms": [
+            "workflow"
+          ],
+          "symptom_missing_terms": [
+            "act",
+            "comment",
+            "hard",
+            "incomplete",
+            "notification"
+          ],
+          "symptom_probe": [
+            "act",
+            "comment",
+            "hard",
+            "incomplete",
+            "notification",
+            "workflow"
+          ]
+        },
+        "priority_band": 2,
+        "priority_band_policy": "within_1_percent_of_band_high_score",
+        "priority_is_low": true,
+        "priority_reason_diagnostics": {
+          "low_priority_items": 2,
+          "low_priority_share": 0.4,
+          "non_discriminating_reasons": [],
+          "note": "2 of 5 roadmap items satisfy at least one low-priority reason, so UNDER-PRIORITIZED is a weak signal on this corpus. Reasons listed in `non_discriminating_reasons` fire on 90%+ of candidates and describe how this repository is run, not this issue. Weigh the explicit priority label and the tier above them.",
+          "reason_firing_rate": {
+            "ingest priority metadata marks the item low": 0.4,
+            "no committed release milestone": 0.4,
+            "priority score is at most 0.35": 0.4,
+            "priority tier is backlog": 0.4
+          },
+          "roadmap_items": 5
+        },
+        "priority_reasons": [
+          "ingest priority metadata marks the item low",
+          "priority tier is backlog",
+          "priority score is at most 0.35",
+          "no committed release milestone"
+        ],
+        "priority_score_semantics": "review-derived priority proxy; not survey-validated ODI",
+        "public_planning_state": "NO_PUBLIC_MATCH",
+        "rank_basis": "uncalibrated_evidence_score_not_probability",
+        "rank_separation": "outside_adjacent_1_percent_display_bands_not_validated",
+        "rationale": "best roadmap similarity is below the low threshold",
+        "raw_confidence": 0.593633822334,
+        "score_breakdown": {
+          "analytic_score": 0.593634,
+          "evidence_score": 0.593633822334,
+          "formula": "sigmoid(intercept + sum(weight x value)) (no LLM sampling observed, so no fusion)",
+          "fusion": "analytic-only",
+          "intercept": -2.25,
+          "logit": 0.379008,
+          "not_a_probability": "Uncalibrated evidence score. No adjudicated labels exist for this run, so this number is not a probability and must not be read as one.",
+          "self_consistency": 0.5,
+          "terms": [
+            {
+              "contribution": 0.639151,
+              "feature": "vol",
+              "value": 0.639151,
+              "weight": 1.0
+            },
+            {
+              "contribution": 0.0,
+              "feature": "div",
+              "value": 0.0,
+              "weight": 0.5
+            },
+            {
+              "contribution": 0.0,
+              "feature": "sent",
+              "value": 0.550833,
+              "weight": 0.0
+            },
+            {
+              "contribution": 0.0,
+              "feature": "rec",
+              "value": 0.916134,
+              "weight": 0.0
+            },
+            {
+              "contribution": 0.875,
+              "feature": "cons",
+              "value": 0.875,
+              "weight": 1.0
+            },
+            {
+              "contribution": 0.75,
+              "feature": "agree",
+              "value": 0.75,
+              "weight": 1.0
+            },
+            {
+              "contribution": 0.364857,
+              "feature": "coh",
+              "value": 0.364857,
+              "weight": 1.0
+            }
+          ]
+        },
+        "score_margin_to_previous": 0.041386,
+        "temporal_scope": {
+          "as_of": "2026-07-31T12:00:00+00:00",
+          "evidence_end": "2026-06-15T09:00:00+00:00",
+          "evidence_start": "2026-06-15T09:00:00+00:00"
+        },
+        "thresholds": {
+          "candidate_pool": 10,
+          "framing_coverage": 0.5,
+          "high": 0.62,
+          "low": 0.38,
+          "min_probe_terms": 3
+        },
+        "verdict_stability": {
+          "borderline": false,
+          "flips_to": "UNDER-PRIORITIZED",
+          "governing_gate": "low",
+          "margin_to_flip": 0.246544,
+          "note": "Best similarity 0.133 against gate 0.38. This verdict becomes UNDER-PRIORITIZED if `low` fell below 0.133. The gate is an unfitted default, so treat a small margin as a soft label. Rank position is unaffected -- it comes from the priority proxy and evidence score."
+        },
+        "verification": {
+          "issues": [],
+          "quote_count": 6,
+          "valid": true,
+          "valid_quote_count": 6
+        },
+        "weakest_assumption": {
+          "all_applicable": [
+            "confidence is uncalibrated"
+          ],
+          "factor": "confidence is uncalibrated",
+          "note": "Derived from measured fields only. Stated by us rather than left for a reader to find.",
+          "severity": 1,
+          "value": null,
+          "what_would_change_it": "adjudicated labels sufficient to fit a calibrator",
+          "why": "No adjudicated labels exist for this run, so the evidence score is an ordering signal and not a probability."
+        }
+      },
+      "need_id": "Nb9b82e5b10f6",
+      "opportunity_score": 13.39415,
+      "rank": 3,
+      "rank_score": 7.95122,
+      "similarity": 0.133456,
+      "symptom_similarity": 0.110942,
+      "verdict": "IGNORED",
+      "why_rank": "priority proxy 13.39 × evidence score 0.594 = 7.951; not a probability. Display band 2; arithmetically outside the adjacent 1% display band; without labels or stability analysis, this is not validated priority separation."
+    },
+    {
+      "calibrated_confidence": null,
+      "critique": "DEFENSIBLE",
+      "evidence": {
+        "quotes": [
+          {
+            "end": 78,
+            "id": "S000015",
+            "span": "I run multiple blogs and the dashboard constantly forgets which site I picked.",
+            "start": 0
+          },
+          {
+            "end": 77,
+            "id": "S000016",
+            "span": "Switching between sites is confusing; the stats shown belong to another blog.",
+            "start": 0
+          },
+          {
+            "end": 75,
+            "id": "S000017",
+            "span": "The site switcher resets to the wrong blog every time I open the dashboard.",
+            "start": 0
+          },
+          {
+            "end": 75,
+            "id": "S000018",
+            "span": "Managing multiple sites is painful because the dashboard stats never match.",
+            "start": 0
+          },
+          {
+            "end": 79,
+            "id": "S000019",
+            "span": "I manage six blogs and the dashboard shows one site's stats under another site.",
+            "start": 0
+          },
+          {
+            "end": 73,
+            "id": "S000020",
+            "span": "The dashboard for multiple sites mixes up which blog the stats belong to.",
+            "start": 0
+          }
+        ],
+        "signal_ids": [
+          "S000015",
+          "S000016",
+          "S000017",
+          "S000018",
+          "S000019",
+          "S000020"
+        ]
+      },
+      "features": {
+        "agree": 0.75,
+        "coh": 0.28522,
+        "cons": 0.875,
+        "div": 0.0,
+        "rec": 0.916134,
+        "selfc": 0.5,
+        "sent": 0.393056,
+        "vol": 0.639151
+      },
+      "id": "G5bffb03e2344",
+      "jtbd": "When using the product, users need to identify the correct site and keep dashboard analytics scoped to it.",
+      "kano_class": "basic",
+      "latent_need": "Unambiguous multi-site management",
+      "latent_similarity": 0.213624,
+      "matched_roadmap_id": "R000003",
+      "metadata": {
+        "adjudication": "deterministic",
+        "as_of": "2026-07-31T12:00:00+00:00",
+        "calibrator": null,
+        "confidence_fusion": "analytic-only",
+        "confidence_status": "uncalibrated_evidence_score_not_probability",
+        "counterevidence": {
+          "basis": "cited signal sentiment > 0.35",
+          "count": 0,
+          "detail": [],
+          "note": "Signals this gap cites that read as positive about the same area. They are already reflected in the `cons` feature; they are listed here so the dissent can be checked, not just counted.",
+          "share_of_evidence": 0.0,
+          "signal_ids": []
+        },
+        "deterministic_order_only": false,
+        "evidence_score": 0.574288745338,
+        "feature_diagnostics": {
+          "constant_features": {
+            "agree": 0.75,
+            "div": 0.0,
+            "rec": 0.916134,
+            "selfc": 0.5
+          },
+          "discriminating_features": {
+            "coh": 0.12998,
+            "cons": 0.025,
+            "sent": 0.242083,
+            "vol": 0.082547
+          },
+          "evidence_score_range": 0.019345,
+          "note": "Constant features carry no discriminating information on this set. On a single-source offline run this is expected: 'div' requires more than one signal source and 'selfc' requires LLM sampling. They are reported, not silently renormalized away.",
+          "weight_on_constant_features": 0.4783
+        },
+        "framing": {
+          "candidate_pool": 5,
+          "coverage_margin": 0.0,
+          "coverage_threshold": 0.5,
+          "eligible": true,
+          "job_corpus_scope": 5,
+          "job_coverage": 0.0,
+          "job_coverage_corpus": 0.0,
+          "job_item_id": null,
+          "job_item_id_corpus": null,
+          "job_item_index": null,
+          "job_matched_terms": [],
+          "job_matched_terms_corpus": [],
+          "job_missing_terms": [
+            "analytic",
+            "correct",
+            "dashboard",
+            "identify"
+          ],
+          "job_probe": [
+            "analytic",
+            "correct",
+            "dashboard",
+            "identify"
+          ],
+          "margin_floor": 0.1,
+          "misunderstood": false,
+          "probe_size": 4,
+          "rationale": "symptom coverage 0% (0/4 terms), job coverage 0% (0/4); no one-sided majority at the 50% cutoff",
+          "symptom_coverage": 0.0,
+          "symptom_item_id": null,
+          "symptom_item_index": null,
+          "symptom_matched_terms": [],
+          "symptom_missing_terms": [
+            "ambiguou",
+            "management",
+            "selection",
+            "unreliable"
+          ],
+          "symptom_probe": [
+            "ambiguou",
+            "management",
+            "selection",
+            "unreliable"
+          ]
+        },
+        "priority_band": 3,
+        "priority_band_policy": "within_1_percent_of_band_high_score",
+        "priority_is_low": true,
+        "priority_reason_diagnostics": {
+          "low_priority_items": 2,
+          "low_priority_share": 0.4,
+          "non_discriminating_reasons": [],
+          "note": "2 of 5 roadmap items satisfy at least one low-priority reason, so UNDER-PRIORITIZED is a weak signal on this corpus. Reasons listed in `non_discriminating_reasons` fire on 90%+ of candidates and describe how this repository is run, not this issue. Weigh the explicit priority label and the tier above them.",
+          "reason_firing_rate": {
+            "ingest priority metadata marks the item low": 0.4,
+            "no committed release milestone": 0.4,
+            "priority score is at most 0.35": 0.4,
+            "priority tier is backlog": 0.4
+          },
+          "roadmap_items": 5
+        },
+        "priority_reasons": [
+          "ingest priority metadata marks the item low",
+          "priority tier is backlog",
+          "priority score is at most 0.35",
+          "no committed release milestone"
+        ],
+        "priority_score_semantics": "review-derived priority proxy; not survey-validated ODI",
+        "public_planning_state": "NO_PUBLIC_MATCH",
+        "rank_basis": "uncalibrated_evidence_score_not_probability",
+        "rank_separation": "outside_adjacent_1_percent_display_bands_not_validated",
+        "rationale": "best roadmap similarity is below the low threshold",
+        "raw_confidence": 0.574288745338,
+        "score_breakdown": {
+          "analytic_score": 0.574289,
+          "evidence_score": 0.574288745338,
+          "formula": "sigmoid(intercept + sum(weight x value)) (no LLM sampling observed, so no fusion)",
+          "fusion": "analytic-only",
+          "intercept": -2.25,
+          "logit": 0.299371,
+          "not_a_probability": "Uncalibrated evidence score. No adjudicated labels exist for this run, so this number is not a probability and must not be read as one.",
+          "self_consistency": 0.5,
+          "terms": [
+            {
+              "contribution": 0.639151,
+              "feature": "vol",
+              "value": 0.639151,
+              "weight": 1.0
+            },
+            {
+              "contribution": 0.0,
+              "feature": "div",
+              "value": 0.0,
+              "weight": 0.5
+            },
+            {
+              "contribution": 0.0,
+              "feature": "sent",
+              "value": 0.393056,
+              "weight": 0.0
+            },
+            {
+              "contribution": 0.0,
+              "feature": "rec",
+              "value": 0.916134,
+              "weight": 0.0
+            },
+            {
+              "contribution": 0.875,
+              "feature": "cons",
+              "value": 0.875,
+              "weight": 1.0
+            },
+            {
+              "contribution": 0.75,
+              "feature": "agree",
+              "value": 0.75,
+              "weight": 1.0
+            },
+            {
+              "contribution": 0.28522,
+              "feature": "coh",
+              "value": 0.28522,
+              "weight": 1.0
+            }
+          ]
+        },
+        "score_margin_to_previous": 0.161793,
+        "temporal_scope": {
+          "as_of": "2026-07-31T12:00:00+00:00",
+          "evidence_end": "2026-06-15T09:00:00+00:00",
+          "evidence_start": "2026-06-15T09:00:00+00:00"
+        },
+        "thresholds": {
+          "candidate_pool": 10,
+          "framing_coverage": 0.5,
+          "high": 0.62,
+          "low": 0.38,
+          "min_probe_terms": 3
+        },
+        "verdict_stability": {
+          "borderline": false,
+          "flips_to": "UNDER-PRIORITIZED",
+          "governing_gate": "low",
+          "margin_to_flip": 0.181094,
+          "note": "Best similarity 0.199 against gate 0.38. This verdict becomes UNDER-PRIORITIZED if `low` fell below 0.199. The gate is an unfitted default, so treat a small margin as a soft label. Rank position is unaffected -- it comes from the priority proxy and evidence score."
+        },
+        "verification": {
+          "issues": [],
+          "quote_count": 6,
+          "valid": true,
+          "valid_quote_count": 6
+        },
+        "weakest_assumption": {
+          "all_applicable": [
+            "confidence is uncalibrated"
+          ],
+          "factor": "confidence is uncalibrated",
+          "note": "Derived from measured fields only. Stated by us rather than left for a reader to find.",
+          "severity": 1,
+          "value": null,
+          "what_would_change_it": "adjudicated labels sufficient to fit a calibrator",
+          "why": "No adjudicated labels exist for this run, so the evidence score is an ordering signal and not a probability."
+        }
+      },
+      "need_id": "N6ed8a70ef561",
+      "opportunity_score": 11.605261,
+      "rank": 4,
+      "rank_score": 6.664771,
+      "similarity": 0.198906,
+      "symptom_similarity": 0.015991,
+      "verdict": "IGNORED",
+      "why_rank": "priority proxy 11.61 × evidence score 0.574 = 6.665; not a probability. Display band 3; arithmetically outside the adjacent 1% display band; without labels or stability analysis, this is not validated priority separation."
+    }
+  ],
+  "mode": "demo_fixture",
+  "schema_version": "1.0"
+}

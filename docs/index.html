@@ -1,0 +1,936 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'sha256-D0IRt+Y91bzXAnlKaLmxxYJTfPy5v4tSwzLp6IcENAM='; img-src 'none'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>The Silent Stakeholder — roadmap gap report</title>
+<style>
+/* ============================================================
+   Design tokens. Ground: cool-biased neutrals; accent: teal-slate,
+   deliberately clear of the four semantic verdict hues. Serif for
+   the two title levels, grotesque for interface, monospace for
+   every identifier, count and state. Tuned for a notebook screen:
+   1080px column, panel instead of inline expansion, motion that
+   directs attention and never blocks it.
+   ============================================================ */
+:root {
+  color-scheme: light dark;
+
+  --serif: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", "Segoe UI Mono", Consolas, monospace;
+
+  --fs-xs: .72rem; --fs-sm: .81rem; --fs-base: .925rem; --fs-md: 1.02rem;
+  --fs-lg: clamp(1.15rem, 1.05rem + .4vw, 1.35rem);
+  --fs-xl: clamp(1.6rem, 1.25rem + 1.1vw, 2.3rem);
+
+  --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem;
+  --sp-5: 1.4rem; --sp-6: 2rem; --sp-7: 2.9rem;
+
+  --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-full: 999px;
+
+  --dur-fast: 120ms; --dur: 200ms; --dur-slow: 380ms;
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --ease-panel: cubic-bezier(.32, .72, .28, 1);
+
+  --bg: oklch(98.6% .004 210);
+  --surface: oklch(100% 0 0);
+  --surface-2: oklch(97% .005 210);
+  --line: oklch(90% .008 210);
+  --line-soft: oklch(94% .006 210);
+  --text: oklch(24% .017 215);
+  --text-2: oklch(48% .015 213);
+  --text-3: oklch(60% .013 212);
+  --accent: oklch(48% .095 205);
+  --accent-soft: oklch(95.5% .022 205);
+  --scrim: oklch(24% .017 215 / .38);
+
+  --critical: oklch(53% .18 25);   --critical-soft: oklch(96% .028 25);
+  --warn: oklch(58% .12 72);       --warn-soft: oklch(96% .035 72);
+  --info: oklch(52% .15 278);      --info-soft: oklch(96% .028 278);
+  --ok: oklch(52% .11 155);        --ok-soft: oklch(96% .032 155);
+
+  --elev-1: 0 1px 2px oklch(24% .017 215 / .05);
+  --elev-2: 0 3px 10px oklch(24% .017 215 / .07), 0 1px 2px oklch(24% .017 215 / .05);
+  --elev-panel: -18px 0 48px oklch(24% .017 215 / .16);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: oklch(17.5% .014 220); --surface: oklch(21% .016 220); --surface-2: oklch(24.5% .017 220);
+    --line: oklch(31% .018 220); --line-soft: oklch(27% .016 220);
+    --text: oklch(95% .005 220); --text-2: oklch(73% .013 218); --text-3: oklch(59% .015 216);
+    --accent: oklch(76% .10 200); --accent-soft: oklch(28% .045 203);
+    --scrim: oklch(5% 0 0 / .55);
+    --critical: oklch(70% .15 25); --critical-soft: oklch(29% .065 25);
+    --warn: oklch(76% .12 72); --warn-soft: oklch(29% .055 72);
+    --info: oklch(73% .13 278); --info-soft: oklch(29% .06 278);
+    --ok: oklch(72% .11 155); --ok-soft: oklch(28% .055 155);
+    --elev-1: 0 1px 2px oklch(0% 0 0 / .32);
+    --elev-2: 0 3px 12px oklch(0% 0 0 / .4), 0 1px 2px oklch(0% 0 0 / .3);
+    --elev-panel: -18px 0 56px oklch(0% 0 0 / .5);
+  }
+}
+/* The viewer's toggle must beat the media query in both directions. */
+:root[data-theme="light"] {
+  --bg: oklch(98.6% .004 210); --surface: oklch(100% 0 0); --surface-2: oklch(97% .005 210);
+  --line: oklch(90% .008 210); --line-soft: oklch(94% .006 210);
+  --text: oklch(24% .017 215); --text-2: oklch(48% .015 213); --text-3: oklch(60% .013 212);
+  --accent: oklch(48% .095 205); --accent-soft: oklch(95.5% .022 205);
+  --scrim: oklch(24% .017 215 / .38);
+  --critical: oklch(53% .18 25); --critical-soft: oklch(96% .028 25);
+  --warn: oklch(58% .12 72); --warn-soft: oklch(96% .035 72);
+  --info: oklch(52% .15 278); --info-soft: oklch(96% .028 278);
+  --ok: oklch(52% .11 155); --ok-soft: oklch(96% .032 155);
+  --elev-1: 0 1px 2px oklch(24% .017 215 / .05);
+  --elev-2: 0 3px 10px oklch(24% .017 215 / .07), 0 1px 2px oklch(24% .017 215 / .05);
+  --elev-panel: -18px 0 48px oklch(24% .017 215 / .16);
+}
+:root[data-theme="dark"] {
+  --bg: oklch(17.5% .014 220); --surface: oklch(21% .016 220); --surface-2: oklch(24.5% .017 220);
+  --line: oklch(31% .018 220); --line-soft: oklch(27% .016 220);
+  --text: oklch(95% .005 220); --text-2: oklch(73% .013 218); --text-3: oklch(59% .015 216);
+  --accent: oklch(76% .10 200); --accent-soft: oklch(28% .045 203);
+  --scrim: oklch(5% 0 0 / .55);
+  --critical: oklch(70% .15 25); --critical-soft: oklch(29% .065 25);
+  --warn: oklch(76% .12 72); --warn-soft: oklch(29% .055 72);
+  --info: oklch(73% .13 278); --info-soft: oklch(29% .06 278);
+  --ok: oklch(72% .11 155); --ok-soft: oklch(28% .055 155);
+  --elev-1: 0 1px 2px oklch(0% 0 0 / .32);
+  --elev-2: 0 3px 12px oklch(0% 0 0 / .4), 0 1px 2px oklch(0% 0 0 / .3);
+  --elev-panel: -18px 0 56px oklch(0% 0 0 / .5);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--sans); font-size: var(--fs-base); line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+body.panel-open { overflow: hidden; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--sp-5); }
+h1, h2, h3 { margin: 0; }
+a { color: var(--accent); text-underline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+:focus:not(:focus-visible) { outline: none; }
+
+/* ---- top bar ---- */
+.bar { position: sticky; top: 0; z-index: 30;
+       background: color-mix(in oklab, var(--bg) 86%, transparent);
+       backdrop-filter: blur(12px) saturate(150%);
+       border-bottom: 1px solid var(--line-soft); }
+.bar-in { display: flex; align-items: center; gap: var(--sp-3); height: 54px; }
+.mark { font-family: var(--serif); font-size: var(--fs-md); font-weight: 600;
+        letter-spacing: -.01em; display: flex; align-items: center; gap: .5rem;
+        white-space: nowrap; }
+.mark svg { width: 23px; height: 20px; flex: 0 0 auto; color: var(--accent);
+            transition: opacity var(--dur-slow) var(--ease); }
+.mark:hover svg { opacity: .7; }
+.spacer { flex: 1; }
+.pill { font-family: var(--mono); font-size: var(--fs-xs); font-weight: 600;
+        padding: .26rem .6rem; border-radius: var(--r-sm); border: 1px solid var(--line);
+        color: var(--text-2); background: var(--surface); white-space: nowrap; }
+.pill.live { color: var(--ok); border-color: color-mix(in oklab, var(--ok) 42%, var(--line));
+             background: var(--ok-soft); }
+.pill.demo { color: var(--warn); border-color: color-mix(in oklab, var(--warn) 48%, var(--line));
+             background: var(--warn-soft); }
+.iconbtn { display: grid; place-items: center; width: 32px; height: 32px; padding: 0;
+           border-radius: var(--r-sm); border: 1px solid var(--line);
+           background: var(--surface); color: var(--text-2); cursor: pointer; font: inherit;
+           transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease),
+                       transform var(--dur-fast) var(--ease); }
+.iconbtn:hover { background: var(--surface-2); color: var(--text); }
+.iconbtn:active { transform: scale(.92); }
+
+/* ---- hero ---- */
+.run { padding: var(--sp-7) 0 0; }
+.meta { font-family: var(--mono); font-size: var(--fs-xs); color: var(--text-3);
+        text-transform: uppercase; letter-spacing: .07em; margin-bottom: var(--sp-3); }
+.run h1 { font-family: var(--serif); font-size: var(--fs-xl); font-weight: 600;
+          letter-spacing: -.018em; text-wrap: balance; max-width: 26ch; }
+.run h1 em { font-style: normal; color: var(--accent); }
+.run > .wrap > p { color: var(--text-2); max-width: 66ch; margin: var(--sp-3) 0 0; }
+
+.rail { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1px; margin-top: var(--sp-6); background: var(--line-soft);
+        border: 1px solid var(--line-soft); border-radius: var(--r-md); overflow: hidden; }
+.cell { background: var(--surface); padding: var(--sp-4); }
+.cell dt { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .08em;
+           color: var(--text-3); font-weight: 600; margin: 0 0 .3rem; }
+.cell dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums;
+           font-size: 1.5rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.1; }
+.cell small { display: block; font-family: var(--sans); font-size: var(--fs-xs);
+              color: var(--text-3); font-weight: 400; margin-top: .3rem; line-height: 1.4; }
+
+.banner { display: flex; gap: var(--sp-3); padding: var(--sp-3) var(--sp-4);
+          border-radius: var(--r-md); border: 1px solid; font-size: var(--fs-sm);
+          margin-top: var(--sp-4); }
+.banner.warn { background: var(--warn-soft);
+               border-color: color-mix(in oklab, var(--warn) 42%, transparent); }
+.banner b { font-weight: 650; }
+
+section { padding: var(--sp-7) 0 0; }
+.sec-head { display: flex; align-items: baseline; gap: var(--sp-3);
+            margin-bottom: var(--sp-4); flex-wrap: wrap;
+            border-bottom: 1px solid var(--line-soft); padding-bottom: var(--sp-3); }
+.sec-head h2 { font-family: var(--serif); font-size: var(--fs-lg); font-weight: 600; }
+.sec-head p { margin: 0; color: var(--text-3); font-size: var(--fs-sm); }
+
+/* ---- verdict filter chips ---- */
+.filters { display: flex; gap: var(--sp-2); flex-wrap: wrap; margin-bottom: var(--sp-4); }
+.fbtn { font: inherit; font-size: var(--fs-xs); font-weight: 650; cursor: pointer;
+        padding: .32rem .7rem; border-radius: var(--r-full);
+        border: 1px solid var(--line); background: var(--surface); color: var(--text-2);
+        transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease),
+                    border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease); }
+.fbtn:hover { border-color: color-mix(in oklab, var(--accent) 40%, var(--line)); }
+.fbtn:active { transform: scale(.96); }
+.fbtn[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent);
+                             border-color: color-mix(in oklab, var(--accent) 45%, var(--line)); }
+.fbtn .n { font-family: var(--mono); opacity: .75; margin-left: .3rem; }
+
+/* ---- finding card: stripe encodes the verdict ---- */
+.card { position: relative; background: var(--surface); border: 1px solid var(--line);
+        border-radius: var(--r-lg); margin-bottom: var(--sp-3); overflow: hidden;
+        box-shadow: var(--elev-1);
+        opacity: 0; transform: translateY(10px);
+        transition: box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease),
+                    transform var(--dur) var(--ease), opacity var(--dur-slow) var(--ease); }
+.card.in { opacity: 1; transform: none; }
+.card.hidden-by-filter { display: none; }
+.card:hover { box-shadow: var(--elev-2); transform: translateY(-1px);
+              border-color: color-mix(in oklab, var(--accent) 22%, var(--line)); }
+.card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px;
+                background: var(--text-3); }
+.card.t-critical::before { background: var(--critical); }
+.card.t-warn::before { background: var(--warn); }
+.card.t-info::before { background: var(--info); }
+.card.t-ok::before { background: var(--ok); }
+
+.head { display: grid; grid-template-columns: auto 1fr auto; gap: var(--sp-4);
+        padding: var(--sp-4) var(--sp-5) var(--sp-3) calc(var(--sp-5) - 3px);
+        align-items: start; }
+.rk { font-family: var(--mono); font-size: var(--fs-sm); font-weight: 600;
+      color: var(--text-3); padding-top: .18rem; font-variant-numeric: tabular-nums; }
+.card h3 { font-size: var(--fs-md); font-weight: 620; letter-spacing: -.011em; }
+.job { color: var(--text-2); font-size: var(--fs-sm); margin: .3rem 0 0; max-width: 70ch; }
+.chip { font-family: var(--mono); font-size: var(--fs-xs); font-weight: 600;
+        white-space: nowrap; padding: .24rem .55rem; border-radius: var(--r-sm);
+        border: 1px solid; }
+.chip.critical { color: var(--critical); background: var(--critical-soft);
+                 border-color: color-mix(in oklab, var(--critical) 34%, transparent); }
+.chip.warn { color: var(--warn); background: var(--warn-soft);
+             border-color: color-mix(in oklab, var(--warn) 34%, transparent); }
+.chip.info { color: var(--info); background: var(--info-soft);
+             border-color: color-mix(in oklab, var(--info) 34%, transparent); }
+.chip.ok { color: var(--ok); background: var(--ok-soft);
+           border-color: color-mix(in oklab, var(--ok) 34%, transparent); }
+.chip.muted { color: var(--text-3); background: var(--surface-2); border-color: var(--line); }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(142px, 1fr));
+         gap: var(--sp-4); padding: 0 var(--sp-5) var(--sp-4) calc(var(--sp-5) - 3px); }
+.fact dt { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .075em;
+           color: var(--text-3); font-weight: 600; margin: 0 0 .2rem; }
+.fact dd { margin: 0; font-size: var(--fs-sm); font-weight: 600; }
+.fact dd em { font-style: normal; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.fact dd span { display: block; font-weight: 400; color: var(--text-3);
+                font-size: var(--fs-xs); margin-top: .15rem; line-height: 1.4; }
+.meter { height: 3px; border-radius: var(--r-full); background: var(--line);
+         overflow: hidden; margin-top: .4rem; }
+.meter i { display: block; height: 100%; background: var(--accent);
+           transform-origin: left; transform: scaleX(0);
+           transition: transform var(--dur-slow) var(--ease); }
+.card.in .meter i { transform: scaleX(var(--v, 0)); }
+
+.foot { border-top: 1px solid var(--line-soft);
+        padding: var(--sp-3) var(--sp-5) var(--sp-3) calc(var(--sp-5) - 3px);
+        display: flex; gap: var(--sp-3); align-items: center; flex-wrap: wrap;
+        background: var(--surface-2); }
+.btn { font: inherit; font-size: var(--fs-sm); font-weight: 620; cursor: pointer;
+       padding: .38rem .85rem; border-radius: var(--r-sm); border: 1px solid var(--line);
+       background: var(--surface); color: var(--text);
+       transition: background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease),
+                   border-color var(--dur-fast) var(--ease); }
+.btn:hover { background: var(--accent-soft);
+             border-color: color-mix(in oklab, var(--accent) 40%, var(--line)); }
+.btn:active { transform: scale(.97); }
+.btn.primary { background: var(--accent); border-color: var(--accent);
+               color: oklch(99% 0 0); }
+.btn.primary:hover { filter: brightness(1.08); }
+.why { font-size: var(--fs-xs); color: var(--text-3); }
+
+/* ---- side panel ---- */
+.scrim { position: fixed; inset: 0; z-index: 40; background: var(--scrim);
+         opacity: 0; pointer-events: none; transition: opacity var(--dur-slow) var(--ease); }
+.scrim.show { opacity: 1; pointer-events: auto; }
+.panel { position: fixed; top: 0; right: 0; bottom: 0; z-index: 50;
+         width: min(600px, 94vw); background: var(--bg);
+         border-left: 1px solid var(--line); box-shadow: var(--elev-panel);
+         transform: translateX(105%);
+         transition: transform var(--dur-slow) var(--ease-panel);
+         display: flex; flex-direction: column; }
+.panel.open { transform: translateX(0); }
+.panel-head { display: flex; align-items: flex-start; gap: var(--sp-3);
+              padding: var(--sp-5); border-bottom: 1px solid var(--line-soft); }
+.panel-head .rk { font-size: var(--fs-md); }
+.panel-title { font-family: var(--serif); font-size: var(--fs-lg); font-weight: 600;
+               letter-spacing: -.014em; flex: 1; }
+.panel-body { overflow-y: auto; padding: var(--sp-5); flex: 1; }
+.h4 { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .08em;
+      font-weight: 600; color: var(--text-3); margin: var(--sp-5) 0 var(--sp-3); }
+.h4:first-child { margin-top: 0; }
+.quote { background: var(--surface); border: 1px solid var(--line-soft);
+         border-left: 3px solid var(--accent); border-radius: var(--r-sm);
+         padding: var(--sp-3) var(--sp-4); margin-bottom: var(--sp-3);
+         font-size: var(--fs-sm); white-space: pre-wrap; overflow-wrap: anywhere; }
+.qmeta { display: flex; gap: var(--sp-3); align-items: center; flex-wrap: wrap;
+         font-family: var(--mono); font-size: var(--fs-xs); color: var(--text-3);
+         margin-bottom: .3rem; }
+.stars { color: var(--warn); letter-spacing: .1em; }
+.redacted { border-left-color: var(--line); color: var(--text-3); font-style: italic; }
+.issue { display: block; background: var(--surface); border: 1px solid var(--line);
+         border-radius: var(--r-sm); padding: var(--sp-3) var(--sp-4);
+         text-decoration: none; color: inherit;
+         transition: border-color var(--dur-fast) var(--ease); }
+.issue:hover { border-color: color-mix(in oklab, var(--accent) 45%, var(--line)); }
+.issue-id { font-family: var(--mono); font-size: var(--fs-xs); color: var(--text-3);
+            margin-bottom: .25rem; }
+.tags { display: flex; gap: var(--sp-2); flex-wrap: wrap; margin-top: var(--sp-2); }
+.tag { font-family: var(--mono); font-size: var(--fs-xs); padding: .12rem .45rem;
+       border-radius: var(--r-full); background: var(--surface-2);
+       border: 1px solid var(--line); color: var(--text-3); }
+.note { font-size: var(--fs-sm); color: var(--text-2); margin: 0 0 var(--sp-3);
+        max-width: 70ch; }
+
+/* ---- tables / details ---- */
+table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line-soft); }
+th { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .07em;
+     color: var(--text-3); font-weight: 600; }
+td.n, th.n { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+tbody tr { transition: background var(--dur-fast) var(--ease); }
+tbody tr:hover { background: var(--surface-2); }
+.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-sm);
+          background: var(--surface); }
+details { border: 1px solid var(--line); border-radius: var(--r-md);
+          background: var(--surface); padding: var(--sp-4) var(--sp-5);
+          margin-bottom: var(--sp-3); }
+summary { cursor: pointer; font-weight: 620; font-size: var(--fs-sm); }
+details[open] summary { margin-bottom: var(--sp-3); }
+footer { margin-top: var(--sp-7); border-top: 1px solid var(--line-soft);
+         padding: var(--sp-5) 0 var(--sp-7); color: var(--text-3);
+         font-size: var(--fs-xs); }
+footer .wrap { max-width: 78ch; margin-left: auto; margin-right: auto; }
+
+@media (max-width: 640px) {
+  .head { grid-template-columns: auto 1fr; }
+  .head .chip { grid-column: 2; justify-self: start; }
+}
+@media print {
+  .bar, .scrim, .panel, .filters, .foot .btn { display: none !important; }
+  .card { break-inside: avoid; opacity: 1 !important; transform: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important;
+                           transition-duration: .01ms !important; }
+  .card { opacity: 1; transform: none; }
+  .meter i { transform: scaleX(var(--v, 0)); }
+}
+</style>
+
+<header class="bar"><div class="wrap bar-in">
+  <div class="mark"><svg viewBox="0 0 100 88" role="img" aria-label="The Silent Stakeholder"><path fill="currentColor" fill-rule="evenodd" d="M8 12 h84 a6 6 0 0 1 6 6 v40 a6 6 0 0 1 -6 6 h-46 l-16 16 v-16 h-22 a6 6 0 0 1 -6 -6 v-40 a6 6 0 0 1 6 -6 z M34 28 h34 a4 4 0 0 1 4 4 v14 a4 4 0 0 1 -4 4 h-14 l-9 9 v-9 h-11 a4 4 0 0 1 -4 -4 v-14 a4 4 0 0 1 4 -4 z"/></svg> The Silent Stakeholder</div>
+  <div class="spacer"></div>
+  <span class="pill" id="provenance"></span>
+  <button class="iconbtn" id="theme" aria-label="Toggle colour theme" title="Toggle colour theme">&#9681;</button>
+</div></header>
+
+<main>
+  <div class="run">
+    <div class="wrap">
+      <div class="meta" id="scope"></div>
+      <h1 id="verdict-line"></h1>
+      <p id="lede"></p>
+      <dl class="rail" id="rail"></dl>
+      <div id="banners"></div>
+    </div>
+  </div>
+
+  <section aria-label="Findings">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Findings</h2>
+        <p id="findings-sub"></p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filter findings by verdict"></div>
+      <div id="findings"></div>
+    </div>
+  </section>
+
+  <section aria-label="Method and provenance">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>How to check us</h2>
+        <p>Every number above, and what qualifies it.</p>
+      </div>
+      <div id="method"></div>
+    </div>
+  </section>
+
+  <footer><div class="wrap" id="footer"></div></footer>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panel-title">
+  <div class="panel-head">
+    <div class="rk" id="panel-rk"></div>
+    <div class="panel-title" id="panel-title"></div>
+    <button class="iconbtn" id="panel-close" aria-label="Close evidence panel">&#10005;</button>
+  </div>
+  <div class="panel-body" id="panel-body"></div>
+</aside>
+
+<script id="payload" type="application/json">{"profile": "public", "issuesNew": "", "withheldQuotes": 0, "mode": "demo_fixture", "demo": true, "generated": "2026-08-03T09:41:15.195717+00:00", "product": "ExamplePress for Android (synthetic)", "analysisMode": "exploratory_snapshot", "counts": {"findings": 4, "candidates": 4, "signals": 26, "roadmap": 5, "quotesValid": 26, "quotesChecked": 26, "signalsUnassigned": 0, "topKRequested": 5, "topKShortfall": 1, "topKShortfallReason": "fewer verified, non-covered, uniquely titled candidates than requested"}, "calibrated": false, "labels": 0, "llm": "disabled", "findings": [{"rank": 1, "id": "G79b3b9275d41", "title": "Recoverable media uploads", "job": "When using the product, users need to upload media in the background and recover individual failures without restarting.", "state": "Aimed at the wrong thing", "tone": "info", "explain": "Touches the area, misses the job.", "verified": 8, "cited": 8, "whyRank": "priority proxy 14.14 × evidence score 0.588 = 8.319; not a probability. Display band 1; order within this 1% score band is a deterministic tie-break, not evidence of meaningful separation.", "priorityBand": 1, "deterministicOrderOnly": true, "opportunity": 14.142187, "kano": "basic", "roadmap": {"id": "R000001", "number": 101, "title": "Warn the author when a media upload fails or stalls", "state": "open", "url": "", "milestone": "Next release", "labels": ["media", "enhancement"]}, "proof": [{"id": "S000001", "span": "Every photo upload stalls halfway and I must start the whole gallery upload again.", "rating": 2.0, "date": "2026-06-15"}, {"id": "S000002", "span": "Uploading images fails silently and the media gallery stays completely empty.", "rating": 1.0, "date": "2026-06-15"}, {"id": "S000003", "span": "The media upload queue freezes and I cannot upload any more photos at all.", "rating": 2.0, "date": "2026-06-15"}, {"id": "S000004", "span": "If one picture in a gallery upload fails, the entire batch of images is lost.", "rating": 1.0, "date": "2026-06-15"}, {"id": "S000005", "span": "Photo uploads stall on hotel wifi with no way to resume the media upload.", "rating": 2.0, "date": "2026-06-15"}, {"id": "S000006", "span": "Large image uploads freeze the whole app while the gallery uploads photos.", "rating": 2.0, "date": "2026-06-15"}, {"id": "S000007", "span": "The upload queue for photos and images stalls at ninety percent every time.", "rating": 1.0, "date": "2026-06-15"}, {"id": "S000008", "span": "Media uploads from my camera roll fail and the gallery shows broken images.", "rating": 1.0, "date": "2026-06-15"}], "stability": null, "weakest": {"factor": "confidence is uncalibrated", "why": "No adjudicated labels exist for this run, so the evidence score is an ordering signal and not a probability.", "change": "adjudicated labels sufficient to fit a calibrator"}, "counter": {"count": 0, "share": 0.0}, "borderline": false}, {"rank": 2, "id": "G350190638f4b", "title": "Lossless drafting and publishing", "job": "When using the product, users need to preserve edits across drafting, syncing, and publishing transitions.", "state": "On the board, parked", "tone": "warn", "explain": "Acknowledged publicly but not scheduled.", "verified": 6, "cited": 6, "whyRank": "priority proxy 14.36 × evidence score 0.578 = 8.294; not a probability. Display band 1; order within this 1% score band is a deterministic tie-break, not evidence of meaningful separation.", "priorityBand": 1, "deterministicOrderOnly": true, "opportunity": 14.357343, "kano": "basic", "roadmap": {"id": "R000002", "number": 102, "title": "Lossless drafting and publishing", "state": "open", "url": "", "milestone": "Future", "labels": ["editor", "reliability"]}, "proof": [{"id": "S000009", "span": "My draft disappeared after the editor tried to sync a page I had just saved.", "rating": 1.0, "date": "2026-06-15"}, {"id": "S000010", "span": "Edits to a long post do not save and the draft reverts to an older version.", "rating": 1.0, "date": "2026-06-15"}, {"id": "S000011", "span": "The editor lost a page when it tried to publish and then failed to sync.", "rating": 1.0, "date": "2026-06-15"}, {"id": "S000012", "span": "Drafts saved on the train never sync, so the post is gone when I open the editor.", "rating": 2.0, "date": "2026-06-15"}, {"id": "S000013", "span": "I publish a post and the editor silently drops the last paragraph I saved.", "rating": 2.0, "date": "2026-06-15"}, {"id": "S000014", "span": "Every long draft I edit fails to save and I retype the whole page again.", "rating": 1.0, "date": "2026-06-15"}], "stability": null, "weakest": {"factor": "confidence is uncalibrated", "why": "No adjudicated labels exist for this run, so the evidence score is an ordering signal and not a probability.", "change": "adjudicated labels sufficient to fit a calibrator"}, "counter": {"count": 0, "share": 0.0}, "borderline": false}, {"rank": 3, "id": "G4ff6d985978a", "title": "Actionable engagement notifications", "job": "When using the product, users need to review and respond to audience activity without losing context.", "state": "Not on the board", "tone": "critical", "explain": "No artifact in the inspected public scope addresses this.", "verified": 6, "cited": 6, "whyRank": "priority proxy 13.39 × evidence score 0.594 = 7.951; not a probability. Display band 2; arithmetically outside the adjacent 1% display band; without labels or stability analysis, this is not validated priority separation.", "priorityBand": 2, "deterministicOrderOnly": false, "opportunity": 13.39415, "kano": "basic", "roadmap": {"id": "R000003", "number": 103, "title": "Refresh the onboarding illustrations", "state": "open", "url": "", "milestone": "", "labels": ["design"]}, "proof": [{"id": "S000021", "span": "A delayed comment notification opens the reply too late; notifications for comments need a timely reply.", "rating": 2.0, "date": "2026-06-15"}, {"id": "S000022", "span": "A notification for a deleted comment appears with no reply option at all.", "rating": 2.0, "date": "2026-06-15"}, {"id": "S000023", "span": "Notifications for new comments never open the right comment thread on reply.", "rating": 2.0, "date": "2026-06-15"}, {"id": "S000024", "span": "A comment notification does not group comment replies, so the reply conversation is slow.", "rating": 2.0, "date": "2026-06-15"}, {"id": "S000025", "span": "A reply notification opens the wrong comment and I lose the whole conversation.", "rating": 1.0, "date": "2026-06-15"}, {"id": "S000026", "span": "Comment replies I send from a notification silently vanish without warning.", "rating": 1.0, "date": "2026-06-15"}], "stability": null, "weakest": {"factor": "confidence is uncalibrated", "why": "No adjudicated labels exist for this run, so the evidence score is an ordering signal and not a probability.", "change": "adjudicated labels sufficient to fit a calibrator"}, "counter": {"count": 0, "share": 0.0}, "borderline": false}, {"rank": 4, "id": "G5bffb03e2344", "title": "Unambiguous multi-site management", "job": "When using the product, users need to identify the correct site and keep dashboard analytics scoped to it.", "state": "Not on the board", "tone": "critical", "explain": "No artifact in the inspected public scope addresses this.", "verified": 6, "cited": 6, "whyRank": "priority proxy 11.61 × evidence score 0.574 = 6.665; not a probability. Display band 3; arithmetically outside the adjacent 1% display band; without labels or stability analysis, this is not validated priority separation.", "priorityBand": 3, "deterministicOrderOnly": false, "opportunity": 11.605261, "kano": "basic", "roadmap": {"id": "R000003", "number": 103, "title": "Refresh the onboarding illustrations", "state": "open", "url": "", "milestone": "", "labels": ["design"]}, "proof": [{"id": "S000015", "span": "I run multiple blogs and the dashboard constantly forgets which site I picked.", "rating": 2.0, "date": "2026-06-15"}, {"id": "S000016", "span": "Switching between sites is confusing; the stats shown belong to another blog.", "rating": 2.0, "date": "2026-06-15"}, {"id": "S000017", "span": "The site switcher resets to the wrong blog every time I open the dashboard.", "rating": 2.0, "date": "2026-06-15"}, {"id": "S000018", "span": "Managing multiple sites is painful because the dashboard stats never match.", "rating": 1.0, "date": "2026-06-15"}, {"id": "S000019", "span": "I manage six blogs and the dashboard shows one site's stats under another site.", "rating": 2.0, "date": "2026-06-15"}, {"id": "S000020", "span": "The dashboard for multiple sites mixes up which blog the stats belong to.", "rating": 2.0, "date": "2026-06-15"}], "stability": null, "weakest": {"factor": "confidence is uncalibrated", "why": "No adjudicated labels exist for this run, so the evidence score is an ordering signal and not a probability.", "change": "adjudicated labels sufficient to fit a calibrator"}, "counter": {"count": 0, "share": 0.0}, "borderline": false}], "inventory": [{"title": "Lossless drafting and publishing", "state": "On the board, parked", "cited": 6, "shipped": true}, {"title": "Recoverable media uploads", "state": "Aimed at the wrong thing", "cited": 8, "shipped": true}, {"title": "Actionable engagement notifications", "state": "Not on the board", "cited": 6, "shipped": true}, {"title": "Unambiguous multi-site management", "state": "Not on the board", "cited": 6, "shipped": true}], "limitations": ["Public GitHub artifacts are not a complete internal roadmap.", "Need boundaries are one deterministic clustering lens; closely related symptoms may be grouped, and no alternate-clustering omission claim is made.", "Uncalibrated scores within 1% of a band's highest score share a display band. Bands expose near-ties; neither within-band order nor cross-band position proves validated priority separation without labels or stability analysis.", "Evidence score is uncalibrated and is not a probability.", "Synthetic fixture dates are pinned for reproducibility; they are not historical user evidence or current product findings."], "stability": null}</script>
+<script>
+(function () {
+  "use strict";
+  var D = JSON.parse(document.getElementById("payload").textContent);
+
+  // Every value below reaches the page through textContent. Review text and
+  // issue titles are attacker-controlled -- the corpus is public and anyone
+  // can publish a review -- so nothing is ever assigned to innerHTML, and
+  // roadmap URLs were validated server-side (https + verified repo only).
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined && text !== null) n.textContent = String(text);
+    return n;
+  }
+  function pct(x) { return Math.round(x * 100) + "%"; }
+  function num(x) { return Number(x).toLocaleString(); }
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var chr10 = String.fromCharCode(10);
+
+  /* ---- theme ---- */
+  var root = document.documentElement;
+  var saved = null;
+  try { saved = localStorage.getItem("ss-theme"); } catch (e) { saved = null; }
+  if (saved) root.setAttribute("data-theme", saved);
+  document.getElementById("theme").addEventListener("click", function () {
+    var now = root.getAttribute("data-theme");
+    var sysDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var next = now ? (now === "dark" ? "light" : "dark") : (sysDark ? "light" : "dark");
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("ss-theme", next); } catch (e) {}
+  });
+
+  /* ---- header ---- */
+  var prov = document.getElementById("provenance");
+  prov.textContent = D.demo ? "DEMO \u00b7 synthetic" : "REAL \u00b7 " + (D.mode || "unknown");
+  prov.className = "pill " + (D.demo ? "demo" : "live");
+
+  var scopeBits = [];
+  if (D.product) scopeBits.push(D.product);
+  if (D.analysisMode) scopeBits.push(D.analysisMode.replace(/_/g, " "));
+  if (D.generated) scopeBits.push(D.generated.slice(0, 10));
+  if (D.profile === "private-evidence" && !D.demo) {
+    scopeBits.push("PRIVATE — LICENSE RESTRICTED");
+  }
+  document.getElementById("scope").textContent = scopeBits.join("  \u00b7  ");
+
+  var C = D.counts;
+  var h1 = document.getElementById("verdict-line");
+  h1.appendChild(el("em", null, C.findings));
+  h1.appendChild(document.createTextNode(
+    (C.findings === 1 ? " need" : " needs") + " surfaced for roadmap review."));
+
+  var byState = {};
+  D.findings.forEach(function (f) { byState[f.state] = (byState[f.state] || 0) + 1; });
+  var parts = Object.keys(byState).map(function (k) { return byState[k] + " " + k.toLowerCase(); });
+  document.getElementById("lede").textContent =
+    (parts.length ? parts.join(", ") + ". " : "") +
+    "Inferred from what users wrote, checked against the roadmap records declared by this " +
+    "run, and traceable to the evidence IDs behind each one.";
+
+  /* ---- stat rail with count-up ---- */
+  var railDefs = [
+    ["Findings", C.findings, "from " + num(C.candidates) + " candidate needs"],
+    ["Quotes verified", C.quotesValid,
+     C.quotesChecked ? "of " + num(C.quotesChecked) + " re-matched against source text"
+                     : "no verification record on this run"],
+    ["User signals read", C.signals, "deduplicated reviews"],
+    ["Roadmap compared", C.roadmap, "records in the declared snapshot"]
+  ];
+  var counters = [];
+  railDefs.forEach(function (row) {
+    var d = el("div", "cell");
+    d.appendChild(el("dt", null, row[0]));
+    var dd = el("dd");
+    var value = el("span", null, reduced ? num(row[1]) : "0");
+    dd.appendChild(value);
+    dd.appendChild(el("small", null, row[2]));
+    d.appendChild(dd);
+    document.getElementById("rail").appendChild(d);
+    counters.push({ node: value, target: Number(row[1]) });
+  });
+  function runCounters() {
+    if (reduced) return;
+    var t0 = null, dur = 700;
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var k = Math.min((ts - t0) / dur, 1);
+      var easeOut = 1 - Math.pow(1 - k, 3);
+      counters.forEach(function (c) {
+        c.node.textContent = num(Math.round(c.target * easeOut));
+      });
+      if (k < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  runCounters();
+
+  /* ---- banners ---- */
+  var banners = document.getElementById("banners");
+  function banner(boldText, rest) {
+    var b = el("div", "banner warn"), t = el("div");
+    t.appendChild(el("b", null, boldText));
+    t.appendChild(document.createTextNode(rest));
+    b.appendChild(t); banners.appendChild(b);
+  }
+  if (D.demo) {
+    banner("Synthetic demo data. ",
+      "These are fixtures for interface and contract testing, not product findings.");
+  }
+  if (D.profile === "private-evidence" && !D.demo) {
+    banner("PRIVATE — LICENSE RESTRICTED. ",
+      "This export contains short verified evidence spans and must not be published.");
+  }
+  if (C.quotesChecked && C.quotesValid < C.quotesChecked) {
+    banner((C.quotesChecked - C.quotesValid) + " quote checks failed. ",
+      "Those quotes are withheld from every screen here and from exported drafts.");
+  }
+  if (C.signalsUnassigned > 0) {
+    banner(C.signalsUnassigned + " signals did not support an emitted need. ",
+      "They remain counted in the run manifest instead of disappearing from the audit trail.");
+  }
+  if (C.topKShortfall > 0) {
+    banner("The requested top " + C.topKRequested + " contains " + C.findings + ". ",
+      "Only verified, non-covered, uniquely titled candidates emitted by this clustering lens " +
+      "are shown. This shortfall is not evidence that no fifth need exists.");
+  }
+  var tied = D.findings.filter(function (f) { return f.deterministicOrderOnly; });
+  if (tied.length > 1) {
+    var tiedBands = Array.from(new Set(tied.map(function (f) { return f.priorityBand; })));
+    banner("Near-tied priorities share band " + tiedBands.join(", ") + ". ",
+      "Bands are display groups. Order inside a 1% band is a deterministic tie-break, not validated priority separation.");
+  }
+  if (D.withheldQuotes > 0) {
+    banner("Public export: " + num(D.withheldQuotes) + " verified quotes withheld. ",
+      "The review corpus has no confirmed redistribution licence, so verbatim text stays in " +
+      "the run artifact. Signal IDs and verification counts remain. Regenerate with " +
+      "--profile private-evidence with explicit acknowledgement for a private walkthrough.");
+  }
+
+  document.getElementById("findings-sub").textContent =
+    "Ordered by evidence \u00d7 opportunity; near ties share a display band. Band position is not validated priority separation.";
+
+  /* ---- side panel ---- */
+  var panel = document.getElementById("panel");
+  var scrim = document.getElementById("scrim");
+  var panelBody = document.getElementById("panel-body");
+  var panelTitle = document.getElementById("panel-title");
+  var panelRk = document.getElementById("panel-rk");
+  var closeBtn = document.getElementById("panel-close");
+  var lastOpener = null;
+
+  function closePanel() {
+    panel.classList.remove("open");
+    scrim.classList.remove("show");
+    document.body.classList.remove("panel-open");
+    if (lastOpener) { lastOpener.focus(); lastOpener = null; }
+  }
+  scrim.addEventListener("click", closePanel);
+  closeBtn.addEventListener("click", closePanel);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && panel.classList.contains("open")) closePanel();
+  });
+
+  function openPanel(f, opener) {
+    lastOpener = opener || null;
+    panelRk.textContent = "B" + f.priorityBand + " · " + String(f.rank).padStart(2, "0");
+    panelTitle.textContent = f.title;
+    panelBody.textContent = "";
+
+    var chip = el("span", "chip " + f.tone, f.state);
+    panelBody.appendChild(chip);
+    if (f.job) panelBody.appendChild(el("p", "note", f.job)).style.marginTop = "0.8rem";
+    if (f.explain) panelBody.appendChild(el("p", "note", f.explain));
+
+    if (f.whyRank) {
+      panelBody.appendChild(el("p", "h4", "Why this order"));
+      panelBody.appendChild(el("p", "note", f.whyRank));
+    }
+
+    panelBody.appendChild(el("p", "h4",
+      "What users wrote \u00b7 " + f.verified + " of " + f.cited + " cited signals verified"));
+    if (!f.proof.length) {
+      panelBody.appendChild(el("p", "note",
+        "No verified quote is available for this finding. A quote appears only after its span " +
+        "is matched against the immutable source text."));
+    } else {
+      // Quotes live in their own box so "show more" can append to the END of the
+      // list rather than after the note and button that follow it.
+      var quoteBox = el("div");
+      panelBody.appendChild(quoteBox);
+      var renderQuote = function (p) {
+        var meta = el("div", "qmeta");
+        meta.appendChild(el("span", null, p.id));
+        if (p.rating) {
+          meta.appendChild(el("span", "stars",
+            "\u2605".repeat(Math.max(0, Math.min(5, p.rating)))));
+        }
+        if (p.date) meta.appendChild(el("span", null, p.date));
+        meta.appendChild(el("span", null, "verified"));
+        quoteBox.appendChild(meta);
+        if (p.span) {
+          quoteBox.appendChild(el("div", "quote", p.span));
+        } else {
+          quoteBox.appendChild(el("div", "quote redacted",
+            "Quote withheld in the public export (unresolved corpus licence). The signal ID " +
+            "above resolves to the verified span in the run artifact."));
+        }
+      };
+      f.proof.slice(0, 12).forEach(renderQuote);
+      if (f.proof.length > 12) {
+        var qnote = el("p", "note",
+          "Showing 12 of " + f.proof.length + " verified quotes. Every cited ID is in the run " +
+          (D.demo
+            ? "artifact; the initial view is capped for readability."
+            : "artifact; excerpts are capped because the review corpus has an unresolved licence."));
+        var qmore = el("button", "btn", "Show all " + f.proof.length + " quotes");
+        qmore.type = "button";
+        qmore.addEventListener("click", function () {
+          // Same renderer, so the redaction branch still fires on revealed rows:
+          // a public export must keep withholding text after expansion.
+          f.proof.slice(12).forEach(renderQuote);
+          qnote.textContent = "Showing all " + f.proof.length + " verified quotes.";
+          qmore.remove();
+        });
+        panelBody.appendChild(qnote);
+        panelBody.appendChild(qmore);
+      }
+    }
+
+    panelBody.appendChild(el("p", "h4", "Closest record on the roadmap"));
+    if (f.roadmap) {
+      var a = el(f.roadmap.url ? "a" : "div", "issue");
+      if (f.roadmap.url) {
+        a.href = f.roadmap.url; a.target = "_blank"; a.rel = "noopener noreferrer";
+      }
+      a.appendChild(el("div", "issue-id",
+        (f.roadmap.number ? "#" + f.roadmap.number + "  \u00b7  " : "") + f.roadmap.state));
+      a.appendChild(el("div", null, f.roadmap.title || "Record not present in artifact"));
+      if (f.roadmap.labels.length) {
+        var tags = el("div", "tags");
+        f.roadmap.labels.forEach(function (l) { tags.appendChild(el("span", "tag", l)); });
+        a.appendChild(tags);
+      }
+      panelBody.appendChild(a);
+    } else {
+      panelBody.appendChild(el("p", "note", "No roadmap record was close enough to cite."));
+    }
+
+    panelBody.appendChild(el("p", "h4", "What would change our mind"));
+    var said = false;
+    if (f.weakest) {
+      panelBody.appendChild(el("p", "note", f.weakest.factor + " \u2014 " + f.weakest.why));
+      if (f.weakest.change) {
+        panelBody.appendChild(el("p", "note", "What would change it: " + f.weakest.change));
+      }
+      said = true;
+    }
+    if (f.counter) {
+      panelBody.appendChild(el("p", "note", f.counter.count
+        ? f.counter.count + " cited signal(s) read as positive about this area ("
+          + pct(f.counter.share) + " of the evidence)."
+        : "No cited signal contradicts this need."));
+      said = true;
+    }
+    if (!said) panelBody.appendChild(el("p", "note", "Not recorded for this finding."));
+
+    panel.classList.add("open");
+    scrim.classList.add("show");
+    document.body.classList.add("panel-open");
+    panelBody.scrollTop = 0;
+    closeBtn.focus();
+  }
+
+  /* ---- findings ---- */
+  var host = document.getElementById("findings");
+  D.findings.forEach(function (f) {
+    var card = el("article", "card t-" + f.tone);
+    card.setAttribute("data-state", f.state);
+
+    var head = el("div", "head");
+    head.appendChild(el("div", "rk",
+      "B" + f.priorityBand + " · " + String(f.rank).padStart(2, "0")));
+    var mid = el("div");
+    mid.appendChild(el("h3", null, f.title));
+    if (f.job) mid.appendChild(el("p", "job", f.job));
+    head.appendChild(mid);
+    head.appendChild(el("span", "chip " + f.tone, f.state));
+    card.appendChild(head);
+
+    var facts = el("dl", "facts");
+    function fact(label, value, sub, meter) {
+      var d = el("div", "fact");
+      d.appendChild(el("dt", null, label));
+      var dd = el("dd");
+      dd.appendChild(el("em", null, value));
+      if (sub) dd.appendChild(el("span", null, sub));
+      if (meter !== undefined) {
+        var m = el("div", "meter"), i = el("i");
+        i.style.setProperty("--v", meter);
+        m.appendChild(i); dd.appendChild(m);
+      }
+      d.appendChild(dd); facts.appendChild(d);
+    }
+
+    var band = f.verified === 0 ? "Unverified"
+             : (f.verified >= 50 && f.verified === f.cited) ? "Strong"
+             : f.verified >= 10 ? "Moderate" : "Limited";
+    fact("Evidence", band, f.verified + " of " + f.cited + " cited signals verified",
+         f.cited ? Math.min(f.verified / f.cited, 1) : 0);
+
+    if (f.stability) {
+      var sBand = f.stability.survival >= 0.9 ? "Reproducible"
+                : f.stability.survival >= 0.6 ? "Mostly stable" : "Fragile";
+      fact("Resampling", sBand + " " + pct(f.stability.survival),
+           "reappears when the corpus is resampled", f.stability.survival);
+    }
+
+    fact("Opportunity",
+         f.opportunity >= 12 ? "High" : f.opportunity >= 8 ? "Moderate" : "Low",
+         f.kano ? f.kano + " need" : "unmet-need score", Math.min(f.opportunity / 20, 1));
+
+    if (f.roadmap) {
+      fact("Roadmap record",
+           f.roadmap.number ? "#" + f.roadmap.number : f.roadmap.id,
+           f.roadmap.state
+             ? f.roadmap.state + (f.roadmap.milestone ? " \u00b7 " + f.roadmap.milestone
+                                                      : " \u00b7 no milestone")
+             : "");
+    } else {
+      fact("Roadmap record", "none", "nothing in the inspected scope");
+    }
+    card.appendChild(facts);
+
+    var foot = el("div", "foot");
+    var btn = el("button", "btn primary", "Open the evidence");
+    btn.addEventListener("click", function () { openPanel(f, btn); });
+    foot.appendChild(btn);
+    if (D.issuesNew) {
+      // Human-reviewed prefill only: no API write and no verbatim review text.
+      var lines = [
+        "Reported by The Silent Stakeholder -- DRAFT, review before filing.",
+        "",
+        "Job to be done: " + (f.job || "not recorded"),
+        "Roadmap reading: " + f.state + " -- " + f.explain,
+        f.roadmap && f.roadmap.number
+          ? "Closest existing record: #" + f.roadmap.number + " (" + f.roadmap.state + ")"
+          : "Closest existing record: none in the inspected public scope",
+        "Evidence: " + f.verified + " of " + f.cited + " cited signals verified against source text",
+        f.stability ? "Survives " + pct(f.stability.survival) + " of corpus resamples" : "",
+        "",
+        "Signal IDs: " + f.proof.map(function (q) { return q.id; }).join(", "),
+        "",
+        D.demo
+          ? "Quotes are synthetic fixture text; resolve the IDs in the run artifact."
+          : "Quotes are licence-restricted and withheld here; resolve the IDs in the run artifact."
+      ].filter(Boolean);
+      var draft = el("a", "btn", "Draft the ticket");
+      draft.href = D.issuesNew + "?title=" + encodeURIComponent(f.title) +
+                   "&body=" + encodeURIComponent(lines.join(chr10));
+      draft.target = "_blank";
+      draft.rel = "noopener noreferrer";
+      foot.appendChild(draft);
+    }
+    foot.appendChild(el("span", "why", f.explain));
+    if (f.borderline) foot.appendChild(el("span", "chip warn", "borderline"));
+    card.appendChild(foot);
+
+    host.appendChild(card);
+  });
+
+  /* ---- verdict filter chips ---- */
+  var filterHost = document.getElementById("filters");
+  var states = Object.keys(byState);
+  var active = "";
+  function applyFilter() {
+    Array.prototype.forEach.call(document.querySelectorAll(".card"), function (c) {
+      var show = !active || c.getAttribute("data-state") === active;
+      c.classList.toggle("hidden-by-filter", !show);
+    });
+    Array.prototype.forEach.call(filterHost.children, function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-state") === active));
+    });
+  }
+  function filterButton(label, state, count) {
+    var b = el("button", "fbtn", label);
+    b.setAttribute("data-state", state);
+    b.setAttribute("aria-pressed", "false");
+    b.appendChild(el("span", "n", String(count)));
+    b.addEventListener("click", function () {
+      active = (active === state) ? "" : state;
+      applyFilter();
+    });
+    filterHost.appendChild(b);
+  }
+  if (states.length > 1) {
+    filterButton("All", "", D.findings.length);
+    states.forEach(function (s) { filterButton(s, s, byState[s]); });
+    applyFilter();
+  }
+
+  /* ---- staggered reveal: walks the eye down the ranking ---- */
+  var cards = document.querySelectorAll(".card");
+  if (!("IntersectionObserver" in window) || reduced) {
+    Array.prototype.forEach.call(cards, function (c) { c.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e, i) {
+        if (!e.isIntersecting) return;
+        var t = e.target;
+        setTimeout(function () { t.classList.add("in"); }, i * 50);
+        io.unobserve(t);
+      });
+    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.05 });
+    Array.prototype.forEach.call(cards, function (c) { io.observe(c); });
+  }
+
+  /* ---- method ---- */
+  var method = document.getElementById("method");
+  function detail(summaryText, build) {
+    var d = el("details");
+    d.appendChild(el("summary", null, summaryText));
+    build(d);
+    method.appendChild(d);
+  }
+
+  detail("Is the confidence number a probability?", function (d) {
+    if (D.calibrated) {
+      d.appendChild(el("p", "note",
+        "This run reports cross-fitted calibrated probabilities from " + D.labels +
+        " human labels."));
+    } else {
+      d.appendChild(el("p", "note",
+        "No \u2014 and we do not print one. This run carries " + D.labels +
+        " human labels, so nothing on this page appears as a confidence percentage. " +
+        "Findings are ranked by an evidence score, and each card reports what was " +
+        "actually checked instead."));
+      d.appendChild(el("p", "note",
+        "To make it a probability: label at least 100 need/roadmap pairs blind, then fit " +
+        "cross-fitted Platt scaling. Isotonic is not selected below 1,000 labels. Labels " +
+        "must come from a human who has not seen the verdicts; the pipeline refuses to " +
+        "fabricate them, because a made-up probability is worse than an honest score."));
+    }
+  });
+
+  detail("How a verdict is decided", function (d) {
+    [["Aimed at the wrong thing",
+      "Decided first. Each need is split into two equal-size, non-overlapping word probes " +
+      "\u2014 words unique to the reported symptom, words unique to the job. It fires only " +
+      "when a roadmap record covers most of the symptom words while nothing covers most of " +
+      "the job words."],
+     ["Not on the board",
+      "The closest roadmap record's similarity falls below the configured floor."],
+     ["On the board, parked", "A record matches, but carries low priority signal."]
+    ].forEach(function (row) {
+      var p = el("p", "note");
+      p.appendChild(el("b", null, row[0] + " \u2014 "));
+      p.appendChild(document.createTextNode(row[1]));
+      d.appendChild(p);
+    });
+    d.appendChild(el("p", "note",
+      "Only the ambiguous middle goes to a language model, and it must cite a roadmap ID " +
+      "and an exact quote to be accepted. No model assigns rank or severity."));
+  });
+
+  function table(container, headers, rows) {
+    var wrap = el("div", "scroll"), t = el("table");
+    var thead = el("thead"), hr = el("tr");
+    headers.forEach(function (h, i) { hr.appendChild(el("th", i ? "n" : null, h)); });
+    thead.appendChild(hr); t.appendChild(thead);
+    var tb = el("tbody");
+    rows.forEach(function (r) {
+      var tr = el("tr");
+      r.forEach(function (c, i) { tr.appendChild(el("td", i ? "n" : null, c)); });
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb); wrap.appendChild(t); container.appendChild(wrap);
+  }
+
+  if (D.stability) {
+    detail("Does each finding survive resampling?", function (d) {
+      d.appendChild(el("p", "note",
+        D.stability.iterations + " subsamples at " + pct(D.stability.fraction) +
+        " of the corpus, without replacement, re-running need inference each time. " +
+        "This is the one measure here that genuinely separates findings, and it uses " +
+        "no human labels."));
+      table(d, ["Finding", "Reappears", "Same signals"],
+        D.findings.filter(function (f) { return f.stability; }).map(function (f) {
+          return [f.title, pct(f.stability.survival), pct(f.stability.jaccard)];
+        }));
+      d.appendChild(el("p", "note",
+        "The columns answer different questions. Reappears asks whether the need is a " +
+        "property of the corpus or of one draw. Same signals asks whether the evidence " +
+        "behind it is the same evidence \u2014 a need can come back every time on a " +
+        "different set of reviews."));
+    });
+  }
+
+  detail("Every candidate emitted by this clustering run (" + D.inventory.length + ")", function (d) {
+    d.appendChild(el("p", "note",
+      "This inventories one configured clustering lens, including candidates that did not make " +
+      "the cut. Another defensible split may emit different needs; this is not an exhaustiveness claim."));
+    table(d, ["Need", "Reads as", "Signals", "In findings"],
+      D.inventory.slice().sort(function (a, b) {
+        return (b.shipped - a.shipped) || (b.cited - a.cited);
+      }).map(function (r) {
+        return [r.title, r.state, num(r.cited), r.shipped ? "yes" : "\u2014"];
+      }));
+  });
+
+  detail("Scope, and what we are not claiming", function (d) {
+    d.appendChild(el("p", "note",
+      "Public GitHub issues are a planning proxy, not proof of intent. Absence from the " +
+      "inspected public scope is reported as \u201cno matching artifact in the inspected " +
+      "public scope\u201d \u2014 never as \u201cthe team ignored this\u201d. " +
+      (D.demo
+        ? "This corpus is synthetic fixture text with pinned dates, not historical user evidence or current product findings."
+        : "Reviews in this corpus may be historical; a current roadmap snapshot cannot prove a historical need was ignored today.")));
+    d.appendChild(el("p", "note",
+      "Every signal here is one source type -- app-store reviews. Cross-source " +
+      "corroboration (support tickets, churn notes) is not modelled, so the diversity " +
+      "feature is constant on this run and cannot reward independent channels."));
+    if (D.llm) d.appendChild(el("p", "note",
+      "Language model backend on this run: " + D.llm + "."));
+  });
+
+  if (D.limitations.length) {
+    detail("Recorded limitations (" + D.limitations.length + ")", function (d) {
+      D.limitations.forEach(function (item) {
+        d.appendChild(el("p", "note", "• " + item));
+      });
+    });
+  }
+
+  document.getElementById("footer").textContent =
+    "Generated from run artifacts" + (D.generated ? " of " + D.generated : "") +
+    ". Every figure resolves to a file in the run directory. " +
+    (D.demo
+      ? "All displayed review text is synthetic fixture content."
+      : "Review text is licence-restricted \u2014 cite signal IDs rather than redistributing quotes.");
+})();
+</script>

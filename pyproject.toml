@@ -1,0 +1,91 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "silent-stakeholder"
+version = "1.0.0"
+description = "Evidence-grounded latent user-need gaps between product signals and GitHub roadmaps."
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = {text = "Proprietary"}
+authors = [{name = "Firecode team"}]
+dependencies = [
+  "matplotlib>=3.9,<4",
+  "numpy>=1.26,<3",
+  "pandas>=2.2,<3",
+  "pyarrow>=18,<25",
+  "pydantic>=2.10,<3",
+  "python-dotenv>=1.0,<2",
+  "requests>=2.32,<3",
+  "scikit-learn>=1.5,<2"
+]
+
+[project.urls]
+Homepage = "https://gev44.github.io/silent-stakeholder/"
+Repository = "https://github.com/GEV44/silent-stakeholder"
+Documentation = "https://github.com/GEV44/silent-stakeholder/tree/main/docs"
+
+[project.optional-dependencies]
+nlp = [
+  "bertopic>=0.17,<0.18",
+  "hdbscan>=0.8.40,<0.9",
+  "sentence-transformers>=3.3,<6",
+  "umap-learn>=0.5.7,<0.6"
+]
+llm = [
+  "google-genai==2.10.0"
+]
+demo = [
+  "plotly>=5.24,<7",
+  "streamlit>=1.41,<2"
+]
+dev = [
+  "mypy>=1.14,<2",
+  "pytest>=8.3,<10",
+  "pytest-cov>=6,<8",
+  "ruff>=0.9,<1"
+]
+all = [
+  "bertopic>=0.17,<0.18",
+  "google-genai==2.10.0",
+  "hdbscan>=0.8.40,<0.9",
+  "mypy>=1.14,<2",
+  "plotly>=5.24,<7",
+  "pytest>=8.3,<10",
+  "pytest-cov>=6,<8",
+  "ruff>=0.9,<1",
+  "sentence-transformers>=3.3,<6",
+  "streamlit>=1.41,<2",
+  "umap-learn>=0.5.7,<0.6"
+]
+
+[project.scripts]
+firecode = "src.run:main"
+
+[tool.setuptools]
+packages = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q --strict-markers --disable-warnings"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+# E501 enforced per REQ-E-13: line-length alone governs only the formatter.
+
+[tool.ruff.lint.per-file-ignores]
+# The report is one Python file carrying its whole CSS/JS template as a string.
+# Those lines are data, not code; wrapping them harms the artifact they emit.
+"report.py" = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_configs = true
+check_untyped_defs = true
+disallow_any_generics = true
+no_implicit_optional = true

@@ -1,0 +1,27 @@
+{
+  "wordpress": {
+    "display_name": "WordPress for Android",
+    "package_name": "org.wordpress.android",
+    "github_repo": "wordpress-mobile/WordPress-Android",
+    "review_source": "https://huggingface.co/datasets/sealuzh/app_reviews",
+    "primary": true,
+    "notes": "Primary defense story: a mature, milestone-driven mobile product."
+  },
+  "ppsspp": {
+    "display_name": "PPSSPP",
+    "package_name": "org.ppsspp.ppsspp",
+    "github_repo": "hrydgard/ppsspp",
+    "review_source": "https://huggingface.co/datasets/sealuzh/app_reviews",
+    "primary": false,
+    "notes": "Scale-robustness appendix."
+  },
+  "antennapod": {
+    "display_name": "AntennaPod",
+    "package_name": "de.danoeh.antennapod",
+    "github_repo": "AntennaPod/AntennaPod",
+    "review_source": "https://huggingface.co/datasets/sealuzh/app_reviews",
+    "primary": false,
+    "notes": "Fallback when a clean thematic roadmap is preferred."
+  }
+}
+

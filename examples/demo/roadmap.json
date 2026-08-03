@@ -1,0 +1,177 @@
+{
+  "mode": "demo_fixture",
+  "roadmap": [
+    {
+      "body": "Show an error banner when uploads fail or stall and block the publishing workflow. Scope is the warning only.",
+      "closed_at": null,
+      "created_at": "2025-11-04T00:00:00Z",
+      "html_url": "https://example.invalid/ExamplePress/ExamplePress-Android/issues/101",
+      "id": "R000001",
+      "labels": [
+        "media",
+        "enhancement"
+      ],
+      "metadata": {
+        "synthetic": true
+      },
+      "milestone": "Next release",
+      "milestone_due": null,
+      "milestone_number": null,
+      "number": 101,
+      "priority": {
+        "has_explicit_priority": false,
+        "is_low_priority": false,
+        "matched_labels": [
+          "enhancement"
+        ],
+        "reasons": [
+          "assigned to a dated release milestone"
+        ],
+        "score": 0.55,
+        "tier": "unspecified"
+      },
+      "repository": "ExamplePress/ExamplePress-Android",
+      "state": "open",
+      "state_reason": null,
+      "title": "Warn the author when a media upload fails or stalls",
+      "type": "issue",
+      "updated_at": "2026-05-20T00:00:00Z"
+    },
+    {
+      "body": "Preserve edits across drafting, syncing, and publishing transitions so no saved page or post is dropped.",
+      "closed_at": null,
+      "created_at": "2025-11-04T00:00:00Z",
+      "html_url": "https://example.invalid/ExamplePress/ExamplePress-Android/issues/102",
+      "id": "R000002",
+      "labels": [
+        "editor",
+        "reliability"
+      ],
+      "metadata": {
+        "synthetic": true
+      },
+      "milestone": "Future",
+      "milestone_due": null,
+      "milestone_number": null,
+      "number": 102,
+      "priority": {
+        "has_explicit_priority": true,
+        "is_low_priority": true,
+        "matched_labels": [
+          "reliability"
+        ],
+        "reasons": [
+          "milestone 'Future' is an undated backlog bucket"
+        ],
+        "score": 0.15,
+        "tier": "backlog"
+      },
+      "repository": "ExamplePress/ExamplePress-Android",
+      "state": "open",
+      "state_reason": null,
+      "title": "Lossless drafting and publishing",
+      "type": "issue",
+      "updated_at": "2026-05-20T00:00:00Z"
+    },
+    {
+      "body": "Update the artwork shown on first launch to match the new brand palette.",
+      "closed_at": null,
+      "created_at": "2025-11-04T00:00:00Z",
+      "html_url": "https://example.invalid/ExamplePress/ExamplePress-Android/issues/103",
+      "id": "R000003",
+      "labels": [
+        "design"
+      ],
+      "metadata": {
+        "synthetic": true
+      },
+      "milestone": null,
+      "milestone_due": null,
+      "milestone_number": null,
+      "number": 103,
+      "priority": {
+        "has_explicit_priority": true,
+        "is_low_priority": true,
+        "matched_labels": [],
+        "reasons": [
+          "no milestone assigned"
+        ],
+        "score": 0.1,
+        "tier": "backlog"
+      },
+      "repository": "ExamplePress/ExamplePress-Android",
+      "state": "open",
+      "state_reason": null,
+      "title": "Refresh the onboarding illustrations",
+      "type": "issue",
+      "updated_at": "2026-05-20T00:00:00Z"
+    },
+    {
+      "body": "Apply the updated heading and caption sizes across settings screens.",
+      "closed_at": null,
+      "created_at": "2025-11-04T00:00:00Z",
+      "html_url": "https://example.invalid/ExamplePress/ExamplePress-Android/issues/104",
+      "id": "R000004",
+      "labels": [
+        "design"
+      ],
+      "metadata": {
+        "synthetic": true
+      },
+      "milestone": "Next release",
+      "milestone_due": null,
+      "milestone_number": null,
+      "number": 104,
+      "priority": {
+        "has_explicit_priority": false,
+        "is_low_priority": false,
+        "matched_labels": [],
+        "reasons": [
+          "assigned to a dated release milestone"
+        ],
+        "score": 0.5,
+        "tier": "unspecified"
+      },
+      "repository": "ExamplePress/ExamplePress-Android",
+      "state": "open",
+      "state_reason": null,
+      "title": "Adopt the new typography scale",
+      "type": "issue",
+      "updated_at": "2026-05-20T00:00:00Z"
+    },
+    {
+      "body": "Profile and trim the startup path so first paint happens sooner.",
+      "closed_at": null,
+      "created_at": "2025-11-04T00:00:00Z",
+      "html_url": "https://example.invalid/ExamplePress/ExamplePress-Android/issues/105",
+      "id": "R000005",
+      "labels": [
+        "performance"
+      ],
+      "metadata": {
+        "synthetic": true
+      },
+      "milestone": "Next release",
+      "milestone_due": null,
+      "milestone_number": null,
+      "number": 105,
+      "priority": {
+        "has_explicit_priority": false,
+        "is_low_priority": false,
+        "matched_labels": [],
+        "reasons": [
+          "assigned to a dated release milestone"
+        ],
+        "score": 0.6,
+        "tier": "unspecified"
+      },
+      "repository": "ExamplePress/ExamplePress-Android",
+      "state": "open",
+      "state_reason": null,
+      "title": "Reduce cold start time on low-end devices",
+      "type": "issue",
+      "updated_at": "2026-05-20T00:00:00Z"
+    }
+  ],
+  "schema_version": "1.0"
+}

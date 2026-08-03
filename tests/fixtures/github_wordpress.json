@@ -1,0 +1,54 @@
+{
+  "milestones": [
+    {
+      "number": 7,
+      "title": "Future",
+      "description": "Ideas deferred to a future release.",
+      "state": "open",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2025-01-01T00:00:00Z",
+      "closed_at": null,
+      "due_on": "2027-12-31T00:00:00Z",
+      "html_url": "https://github.com/wordpress-mobile/WordPress-Android/milestone/7"
+    }
+  ],
+  "issues": [
+    {
+      "number": 10,
+      "title": "Speed up media export",
+      "body": "Export takes too long on large sites.",
+      "state": "open",
+      "labels": [{"name": "P1"}, {"name": "performance"}],
+      "milestone": null,
+      "created_at": "2025-12-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z",
+      "closed_at": null,
+      "html_url": "https://github.com/wordpress-mobile/WordPress-Android/issues/10"
+    },
+    {
+      "number": 11,
+      "title": "Offline media editing",
+      "body": null,
+      "state": "open",
+      "labels": ["enhancement"],
+      "milestone": {"number": 7, "title": "Future"},
+      "created_at": "2020-01-01T00:00:00Z",
+      "updated_at": "2025-02-01T00:00:00Z",
+      "closed_at": null,
+      "html_url": "https://github.com/wordpress-mobile/WordPress-Android/issues/11"
+    },
+    {
+      "number": 12,
+      "title": "Do not ingest this pull request",
+      "body": "GitHub returns PRs from the issues endpoint.",
+      "state": "closed",
+      "labels": [],
+      "milestone": null,
+      "created_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2025-01-02T00:00:00Z",
+      "closed_at": "2025-01-02T00:00:00Z",
+      "html_url": "https://github.com/wordpress-mobile/WordPress-Android/pull/12",
+      "pull_request": {"url": "https://api.github.com/repos/example/example/pulls/12"}
+    }
+  ]
+}

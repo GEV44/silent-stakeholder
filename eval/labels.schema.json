@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Firecode adjudicated gap labels",
+  "type": "object",
+  "required": ["schema_version", "reviewers", "labels"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "reviewers": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 2,
+      "uniqueItems": true
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "need_id",
+          "roadmap_id",
+          "need_supported",
+          "public_artifact_match",
+          "public_claim_defensible",
+          "adjudicated"
+        ],
+        "properties": {
+          "gap_id": {"type": "string", "pattern": "^G"},
+          "need_id": {"type": "string", "pattern": "^N"},
+          "roadmap_id": {"type": "string", "pattern": "^R"},
+          "need_supported": {"type": "boolean"},
+          "public_artifact_match": {
+            "enum": ["none", "partial", "material"]
+          },
+          "public_claim_defensible": {"type": "boolean"},
+          "verdict": {
+            "enum": ["IGNORED", "UNDER-PRIORITIZED", "MISUNDERSTOOD", "COVERED"]
+          },
+          "adjudicated": {"type": "boolean"},
+          "notes": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
+

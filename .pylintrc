@@ -1,0 +1,86 @@
+# Pylint configuration for The Silent Stakeholder.
+#
+# The project's primary linter is ruff (pyproject.toml, and the standard checks
+# in CLAUDE.md). Pylint runs in CI as a second opinion. Everything disabled below
+# is a check that contradicts a convention this project has *documented and chosen*
+# — not a check silenced because it was inconvenient. Each carries its reason.
+#
+# Unconfigured, pylint scored the codebase 9.18/10 with ~450 messages, of which
+# 179 were "missing docstring" and 31 were the lazy-import pattern src/CLAUDE.md
+# explicitly mandates. A gate that fails on documented architecture trains people
+# to ignore CI, which is worse than having no gate.
+
+[MAIN]
+# Match pyproject.toml's requires-python (>=3.11,<3.14).
+py-version = 3.11
+jobs = 0
+
+# Pass on score rather than on zero messages. Nothing is silenced: every remaining
+# finding still prints in the CI log, and the score falls if real problems land.
+# At the time of writing the tree scores 9.95 with 18 remaining messages, of which
+# ~12 are false positives for patterns this codebase uses deliberately (pydantic
+# FieldInfo descriptors, protocol-conforming test stubs with unused args, Streamlit
+# module-level script scope) and ~6 are genuine trivia spread across four other
+# lanes — trailing newlines, a missing `encoding=`, a duplicate import. Those are
+# listed in REQ-E-13 for their owners rather than reached into from block-e.
+fail-under = 9.90
+
+[MESSAGES CONTROL]
+disable =
+    # src/CLAUDE.md: "Docstrings explain **why**, not what — the what is readable
+    # from the code." Public contracts are typed; prose is deliberate, not required.
+    missing-function-docstring,
+    missing-class-docstring,
+    missing-module-docstring,
+
+    # src/CLAUDE.md: "Optional heavy dependencies (sentence-transformers, hdbscan,
+    # google-genai) are imported lazily inside the function that needs them, with a
+    # working fallback." Lazy import is the architecture, not an accident.
+    import-outside-toplevel,
+
+    # Frozen dataclasses, Protocols and config carriers legitimately hold many
+    # fields and expose few methods. src/schema.py is entirely this shape.
+    too-few-public-methods,
+    too-many-instance-attributes,
+
+    # Pipeline stages are deliberately long, explicit functions rather than
+    # framework indirection — CLAUDE.md: "Prefer a small readable function over
+    # framework indirection ... a judge must be able to follow any number back to
+    # the line that produced it."
+    too-many-locals,
+    too-many-arguments,
+    too-many-positional-arguments,
+    too-many-statements,
+    too-many-branches,
+    too-many-return-statements,
+    too-many-lines,
+
+    # pytest fixtures shadow their own names by design.
+    redefined-outer-name,
+
+    # tests/test_app_safety.py and tests/test_app_artifact_selection.py compile
+    # helpers out of app.py's AST rather than importing a module that runs
+    # Streamlit at import time. Both sites carry `# noqa: S102` and a comment.
+    exec-used,
+
+    # The stages share deliberate structural parallels; pylint reads them as
+    # duplication.
+    duplicate-code,
+
+    # TEMPORARILY DISABLED — this one is a real finding, not a convention.
+    # ruff does not actually enforce line length: E501 is not in its default rule
+    # selection, so `line-length = 100` in pyproject.toml governs the formatter
+    # only. Twelve lines exceed 100 chars, one of them 891. Enabling this check
+    # would fail CI on files across three other lanes. Tracked in REQ-E-13; re-enable
+    # once E501 is added to ruff's select list and the overruns are wrapped.
+    line-too-long,
+
+[TYPECHECK]
+# Pydantic replaces class-level FieldInfo descriptors with real values at
+# instantiation; pylint sees the descriptor. A framework fact, not a code smell.
+ignored-classes = FieldInfo
+
+[BASIC]
+# Defaults plus the Streamlit module-scope flow variables in app.py: a script
+# page runs at module level, so pylint reads every assignment as a constant.
+good-names = i, j, k, ex, Run, _, df, exc, draft, best

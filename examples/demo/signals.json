@@ -1,0 +1,318 @@
+{
+  "mode": "demo_fixture",
+  "schema_version": "1.0",
+  "signals": [
+    {
+      "id": "S000001",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "Every photo upload stalls halfway and I must start the whole gallery upload again.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000002",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 1.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "Uploading images fails silently and the media gallery stays completely empty.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000003",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "The media upload queue freezes and I cannot upload any more photos at all.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000004",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 1.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "If one picture in a gallery upload fails, the entire batch of images is lost.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000005",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "Photo uploads stall on hotel wifi with no way to resume the media upload.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000006",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "Large image uploads freeze the whole app while the gallery uploads photos.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000007",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 1.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "The upload queue for photos and images stalls at ninety percent every time.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000008",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 1.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "Media uploads from my camera roll fail and the gallery shows broken images.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000009",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 1.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "My draft disappeared after the editor tried to sync a page I had just saved.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000010",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 1.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "Edits to a long post do not save and the draft reverts to an older version.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000011",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 1.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "The editor lost a page when it tried to publish and then failed to sync.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000012",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "Drafts saved on the train never sync, so the post is gone when I open the editor.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000013",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "I publish a post and the editor silently drops the last paragraph I saved.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000014",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 1.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "Every long draft I edit fails to save and I retype the whole page again.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000015",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "I run multiple blogs and the dashboard constantly forgets which site I picked.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000016",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "Switching between sites is confusing; the stats shown belong to another blog.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000017",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "The site switcher resets to the wrong blog every time I open the dashboard.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000018",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 1.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "Managing multiple sites is painful because the dashboard stats never match.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000019",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "I manage six blogs and the dashboard shows one site's stats under another site.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000020",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "The dashboard for multiple sites mixes up which blog the stats belong to.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000021",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "A delayed comment notification opens the reply too late; notifications for comments need a timely reply.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000022",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "A notification for a deleted comment appears with no reply option at all.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000023",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "Notifications for new comments never open the right comment thread on reply.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000024",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 2.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "A comment notification does not group comment replies, so the reply conversation is slow.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000025",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 1.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "A reply notification opens the wrong comment and I lose the whole conversation.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "S000026",
+      "metadata": {
+        "synthetic": true
+      },
+      "package_name": "com.examplepress.android",
+      "rating": 1.0,
+      "source": "app_review",
+      "source_id": null,
+      "text": "Comment replies I send from a notification silently vanish without warning.",
+      "timestamp": "2026-06-15T09:00:00Z"
+    }
+  ]
+}

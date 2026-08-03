@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "random_seed": 42,
+  "embedding": {
+    "backend": "hashing",
+    "model": "BAAI/bge-small-en-v1.5",
+    "selectable_backends": ["hashing", "auto", "sentence-transformers"],
+    "note": "`backend` is what shipped runs use: hashing, so results are byte-reproducible with no model download. `model` names the embedder used when --embedding sentence-transformers is selected; it is NOT null even though the default backend ignores it, because a null here silently resolved to model_name=None and SentenceTransformer(None) fails without raising (see docs/contracts/REQ-main-3). The embedding selects the candidate pool (`gap_thresholds.candidate_pool`), and a lexical coverage rule decides the verdict within that pool. Verdicts are therefore backend-SENSITIVE, not invariant: artifact-red-team swapped only the embedder (sentence-transformers -> hashing) on the shipped WordPress run and both MISUNDERSTOOD verdicts fell to IGNORED, because the candidate each depended on dropped out of the pre-filtered pool (see docs/contracts/REQ-main-4). The lexical rule itself is deterministic given a candidate set; it is the retrieval stage upstream of it that is not."
+  },
+  "clustering": {
+    "backend": "minibatch-kmeans",
+    "min_cluster_size": 15,
+    "min_samples": 5,
+    "note": "Describes what src/needs.py:cluster_signals ACTUALLY runs. Corpora of >=100 signals use seeded MiniBatchKMeans (k = clamp(sqrt(n/2), 8, 80)); smaller sets use greedy cosine agglomeration at similarity_threshold. This key previously read 'hdbscan', which never executed on the 2,974-signal run - HDBSCAN would keep noise as -1 instead of force-assigning every signal to a theme, and adopting it is a measured comparison (multi-seed cluster count, noise share, cohesion, top-k overlap), not a config edit. Tracked as future work rather than claimed here."
+  },
+  "gap_thresholds": {
+    "low": 0.38,
+    "high": 0.62,
+    "symptom_delta": 0.12,
+    "framing_coverage": 0.5,
+    "min_probe_terms": 3,
+    "candidate_pool": 10,
+    "min_coverage_margin": 0.10,
+    "note": "framing_coverage=0.5 is a majority, not a tuned constant. symptom_delta is VESTIGIAL: the similarity-difference verdict path it fed was removed (it was unreachable by construction), and it now affects no decision anywhere; it is retained only so cached artifacts and existing constructors keep parsing. low=0.38/high=0.62 are UNFITTED defaults - no adjudicated labels exist to tune them on. `low` is load-bearing and its sensitivity is documented in docs/status/BLOCK-C.md; `high` is unreachable on the current corpus (max observed similarity 0.458). min_coverage_margin=0.10 (REQ-E-03) rejects a one-sided coverage majority decided within 10 points of the cutoff: two independent reviewers (block-d, block-e) rejected 3 of 5 real MISUNDERSTOOD verdicts where the symptom probe cleared 50% on complaint-generic vocabulary (`cannot`, `find`, `sign`) rather than genuine subject overlap, with both sides a few points from the cutoff; the two verdicts that survived review sat 31 and 39 points apart. Round and disclosed as unfitted, not selected to land between those exact figures."
+  },
+  "confidence": {
+    "calibrator": "auto",
+    "min_isotonic_labels": 1000,
+    "evidence_features": [
+      "vol",
+      "div",
+      "cons",
+      "selfc",
+      "agree"
+    ],
+    "priority_diagnostics_not_evidence": ["sent", "rec"],
+    "default_weights": {
+      "vol": 1.0,
+      "div": 0.5,
+      "sent": 0.0,
+      "rec": 0.0,
+      "cons": 1.0,
+      "selfc": 1.25,
+      "agree": 1.0,
+      "coh": 1.0
+    },
+    "weight_note": "coh (evidence cohesion) is weighted at 1.0, matching cons and vol. It is included because it genuinely varies per gap on this corpus, unlike div/selfc/agree which are constant here - see metadata.feature_diagnostics on every gap, which names them. sent and rec stay at 0.0: they are priority diagnostics, not evidence that a gap is real."
+  },
+  "verification": {
+    "fuzzy_quote_threshold": 0.92,
+    "reject_unknown_ids": true,
+    "reject_missing_quotes": true
+  },
+  "ranking": {
+    "top_k": 5,
+    "score_uncalibrated": "evidence_score * priority_proxy (neither factor is a probability)",
+    "score_calibrated": "calibrated_confidence * priority_proxy (only when adjudicated labels permit calibration)",
+    "note": "Runs without labels use score_uncalibrated and report status=uncalibrated_evidence_score_not_probability."
+  }
+}

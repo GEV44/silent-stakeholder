@@ -1,0 +1,284 @@
+{
+  "mode": "demo_fixture",
+  "schema_version": "1.0",
+  "verification": [
+    {
+      "critique": "DEFENSIBLE",
+      "gap_id": "G350190638f4b",
+      "issues": [],
+      "quote_reports": [
+        {
+          "end": 76,
+          "exact": true,
+          "id": "S000009",
+          "matched_span": "My draft disappeared after the editor tried to sync a page I had just saved.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 75,
+          "exact": true,
+          "id": "S000010",
+          "matched_span": "Edits to a long post do not save and the draft reverts to an older version.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 72,
+          "exact": true,
+          "id": "S000011",
+          "matched_span": "The editor lost a page when it tried to publish and then failed to sync.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 81,
+          "exact": true,
+          "id": "S000012",
+          "matched_span": "Drafts saved on the train never sync, so the post is gone when I open the editor.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 74,
+          "exact": true,
+          "id": "S000013",
+          "matched_span": "I publish a post and the editor silently drops the last paragraph I saved.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 72,
+          "exact": true,
+          "id": "S000014",
+          "matched_span": "Every long draft I edit fails to save and I retype the whole page again.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        }
+      ],
+      "roadmap_quote_report": null,
+      "valid": true
+    },
+    {
+      "critique": "DEFENSIBLE",
+      "gap_id": "G79b3b9275d41",
+      "issues": [],
+      "quote_reports": [
+        {
+          "end": 82,
+          "exact": true,
+          "id": "S000001",
+          "matched_span": "Every photo upload stalls halfway and I must start the whole gallery upload again.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 77,
+          "exact": true,
+          "id": "S000002",
+          "matched_span": "Uploading images fails silently and the media gallery stays completely empty.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 74,
+          "exact": true,
+          "id": "S000003",
+          "matched_span": "The media upload queue freezes and I cannot upload any more photos at all.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 77,
+          "exact": true,
+          "id": "S000004",
+          "matched_span": "If one picture in a gallery upload fails, the entire batch of images is lost.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 73,
+          "exact": true,
+          "id": "S000005",
+          "matched_span": "Photo uploads stall on hotel wifi with no way to resume the media upload.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 74,
+          "exact": true,
+          "id": "S000006",
+          "matched_span": "Large image uploads freeze the whole app while the gallery uploads photos.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 75,
+          "exact": true,
+          "id": "S000007",
+          "matched_span": "The upload queue for photos and images stalls at ninety percent every time.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 75,
+          "exact": true,
+          "id": "S000008",
+          "matched_span": "Media uploads from my camera roll fail and the gallery shows broken images.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        }
+      ],
+      "roadmap_quote_report": {
+        "end": 134,
+        "exact": true,
+        "id": "R000001",
+        "matched_span": "Show an error banner when uploads fail or stall and block the publishing workflow.",
+        "score": 1.0,
+        "start": 52,
+        "valid": true
+      },
+      "valid": true
+    },
+    {
+      "critique": "DEFENSIBLE",
+      "gap_id": "G4ff6d985978a",
+      "issues": [],
+      "quote_reports": [
+        {
+          "end": 104,
+          "exact": true,
+          "id": "S000021",
+          "matched_span": "A delayed comment notification opens the reply too late; notifications for comments need a timely reply.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 73,
+          "exact": true,
+          "id": "S000022",
+          "matched_span": "A notification for a deleted comment appears with no reply option at all.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 76,
+          "exact": true,
+          "id": "S000023",
+          "matched_span": "Notifications for new comments never open the right comment thread on reply.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 89,
+          "exact": true,
+          "id": "S000024",
+          "matched_span": "A comment notification does not group comment replies, so the reply conversation is slow.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 79,
+          "exact": true,
+          "id": "S000025",
+          "matched_span": "A reply notification opens the wrong comment and I lose the whole conversation.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 75,
+          "exact": true,
+          "id": "S000026",
+          "matched_span": "Comment replies I send from a notification silently vanish without warning.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        }
+      ],
+      "roadmap_quote_report": null,
+      "valid": true
+    },
+    {
+      "critique": "DEFENSIBLE",
+      "gap_id": "G5bffb03e2344",
+      "issues": [],
+      "quote_reports": [
+        {
+          "end": 78,
+          "exact": true,
+          "id": "S000015",
+          "matched_span": "I run multiple blogs and the dashboard constantly forgets which site I picked.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 77,
+          "exact": true,
+          "id": "S000016",
+          "matched_span": "Switching between sites is confusing; the stats shown belong to another blog.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 75,
+          "exact": true,
+          "id": "S000017",
+          "matched_span": "The site switcher resets to the wrong blog every time I open the dashboard.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 75,
+          "exact": true,
+          "id": "S000018",
+          "matched_span": "Managing multiple sites is painful because the dashboard stats never match.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 79,
+          "exact": true,
+          "id": "S000019",
+          "matched_span": "I manage six blogs and the dashboard shows one site's stats under another site.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        },
+        {
+          "end": 73,
+          "exact": true,
+          "id": "S000020",
+          "matched_span": "The dashboard for multiple sites mixes up which blog the stats belong to.",
+          "score": 1.0,
+          "start": 0,
+          "valid": true
+        }
+      ],
+      "roadmap_quote_report": null,
+      "valid": true
+    }
+  ]
+}

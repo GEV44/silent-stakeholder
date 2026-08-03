@@ -1,0 +1,190 @@
+{
+  "mode": "demo_fixture",
+  "needs": [
+    {
+      "cluster_id": "Cf6beea1b512d",
+      "id": "N138437378b0b",
+      "importance": 7.449505,
+      "jtbd_statement": "When using the product, users need to preserve edits across drafting, syncing, and publishing transitions.",
+      "kano_class": "basic",
+      "latent_need": "Lossless drafting and publishing",
+      "metadata": {
+        "aspects": [
+          "editor",
+          "draft",
+          "page"
+        ],
+        "friction_filter": true,
+        "inference": "offline",
+        "llm_failures": 0,
+        "llm_samples": 0,
+        "mean_sentiment": -0.891667,
+        "mean_sentiment_intensity": 0.635139,
+        "negative_share": 1.0,
+        "praise_signals_dropped": 0,
+        "priority_score_semantics": "review-derived priority proxy; not survey-validated ODI",
+        "self_consistency": 1.0,
+        "semantic_signals_excluded": 2,
+        "semantic_support_filter": "deterministic_domain_vocabulary",
+        "support_count": 6,
+        "temporal_scope": {
+          "evidence_end": "2026-06-15T09:00:00+00:00",
+          "evidence_start": "2026-06-15T09:00:00+00:00"
+        },
+        "unnameable_clusters_dropped": 0
+      },
+      "opportunity_score": 14.357343,
+      "root_cause_hypothesis": "Repeated evidence around editor suggests an unreliable or incomplete workflow; product telemetry is needed to confirm the cause.",
+      "satisfaction": 0.541667,
+      "supporting_signal_ids": [
+        "S000009",
+        "S000010",
+        "S000011",
+        "S000012",
+        "S000013",
+        "S000014"
+      ],
+      "symptom": "Draft or page changes fail to save, sync, or publish reliably."
+    },
+    {
+      "cluster_id": "Ca2236e1e883e",
+      "id": "N51b390fef55f",
+      "importance": 7.586719,
+      "jtbd_statement": "When using the product, users need to upload media in the background and recover individual failures without restarting.",
+      "kano_class": "basic",
+      "latent_need": "Recoverable media uploads",
+      "metadata": {
+        "aspects": [
+          "upload",
+          "uploads",
+          "gallery"
+        ],
+        "domain_signals_attached": 2,
+        "friction_filter": true,
+        "inference": "offline",
+        "llm_failures": 0,
+        "llm_samples": 0,
+        "mean_sentiment": -0.79375,
+        "mean_sentiment_intensity": 0.568021,
+        "negative_share": 1.0,
+        "praise_signals_dropped": 0,
+        "priority_score_semantics": "review-derived priority proxy; not survey-validated ODI",
+        "self_consistency": 1.0,
+        "semantic_signals_excluded": 0,
+        "semantic_support_filter": "deterministic_domain_vocabulary",
+        "support_count": 8,
+        "temporal_scope": {
+          "evidence_end": "2026-06-15T09:00:00+00:00",
+          "evidence_start": "2026-06-15T09:00:00+00:00"
+        },
+        "unnameable_clusters_dropped": 0
+      },
+      "opportunity_score": 14.142187,
+      "root_cause_hypothesis": "Repeated evidence around upload suggests an unreliable or incomplete workflow; product telemetry is needed to confirm the cause.",
+      "satisfaction": 1.03125,
+      "supporting_signal_ids": [
+        "S000001",
+        "S000002",
+        "S000003",
+        "S000004",
+        "S000005",
+        "S000006",
+        "S000007",
+        "S000008"
+      ],
+      "symptom": "Media uploads fail, stall, or block the publishing workflow."
+    },
+    {
+      "cluster_id": "C5af9f178f4e4",
+      "id": "Nb9b82e5b10f6",
+      "importance": 7.238742,
+      "jtbd_statement": "When using the product, users need to review and respond to audience activity without losing context.",
+      "kano_class": "basic",
+      "latent_need": "Actionable engagement notifications",
+      "metadata": {
+        "aspects": [
+          "comment",
+          "reply",
+          "notification"
+        ],
+        "friction_filter": true,
+        "inference": "offline",
+        "llm_failures": 0,
+        "llm_samples": 0,
+        "mean_sentiment": -0.783333,
+        "mean_sentiment_intensity": 0.550833,
+        "negative_share": 1.0,
+        "praise_signals_dropped": 0,
+        "priority_score_semantics": "review-derived priority proxy; not survey-validated ODI",
+        "self_consistency": 1.0,
+        "semantic_signals_excluded": 0,
+        "semantic_support_filter": "deterministic_domain_vocabulary",
+        "support_count": 6,
+        "temporal_scope": {
+          "evidence_end": "2026-06-15T09:00:00+00:00",
+          "evidence_start": "2026-06-15T09:00:00+00:00"
+        },
+        "unnameable_clusters_dropped": 0
+      },
+      "opportunity_score": 13.39415,
+      "root_cause_hypothesis": "Repeated evidence around comment suggests an unreliable or incomplete workflow; product telemetry is needed to confirm the cause.",
+      "satisfaction": 1.083333,
+      "supporting_signal_ids": [
+        "S000021",
+        "S000022",
+        "S000023",
+        "S000024",
+        "S000025",
+        "S000026"
+      ],
+      "symptom": "Comment and notification workflows are incomplete or hard to act on."
+    },
+    {
+      "cluster_id": "C44d1e6afaa74",
+      "id": "N6ed8a70ef561",
+      "importance": 6.844297,
+      "jtbd_statement": "When using the product, users need to identify the correct site and keep dashboard analytics scoped to it.",
+      "kano_class": "basic",
+      "latent_need": "Unambiguous multi-site management",
+      "metadata": {
+        "aspects": [
+          "sites",
+          "stats",
+          "belong"
+        ],
+        "domain_signals_attached": 3,
+        "friction_filter": true,
+        "inference": "offline",
+        "llm_failures": 0,
+        "llm_samples": 0,
+        "mean_sentiment": -0.583333,
+        "mean_sentiment_intensity": 0.393056,
+        "negative_share": 1.0,
+        "praise_signals_dropped": 0,
+        "priority_score_semantics": "review-derived priority proxy; not survey-validated ODI",
+        "self_consistency": 1.0,
+        "semantic_signals_excluded": 0,
+        "semantic_support_filter": "deterministic_domain_vocabulary",
+        "support_count": 6,
+        "temporal_scope": {
+          "evidence_end": "2026-06-15T09:00:00+00:00",
+          "evidence_start": "2026-06-15T09:00:00+00:00"
+        },
+        "unnameable_clusters_dropped": 0
+      },
+      "opportunity_score": 11.605261,
+      "root_cause_hypothesis": "Repeated evidence around sites suggests an unreliable or incomplete workflow; product telemetry is needed to confirm the cause.",
+      "satisfaction": 2.083333,
+      "supporting_signal_ids": [
+        "S000015",
+        "S000016",
+        "S000017",
+        "S000018",
+        "S000019",
+        "S000020"
+      ],
+      "symptom": "Site selection and management are unreliable or ambiguous."
+    }
+  ],
+  "schema_version": "1.0"
+}

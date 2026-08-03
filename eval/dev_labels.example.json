@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "status": "EXAMPLE_ONLY_NOT_FOR_CALIBRATION",
+  "reviewers": [],
+  "labels": [
+    {
+      "need_id": "N000001",
+      "roadmap_id": "R000001",
+      "signal_support": true,
+      "roadmap_coverage": false,
+      "verdict": "IGNORED",
+      "public_claim_defensible": true,
+      "adjudicated": false,
+      "notes": "Replace this synthetic example with a double-reviewed real pair."
+    }
+  ]
+}
+

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Prevent protected evidence and evaluation answer keys from entering Git.
+# Enable once per clone: git config core.hooksPath .githooks
+
+set -u
+
+staged="$(git diff --cached --name-only --diff-filter=ACMR)"
+[ -z "$staged" ] && exit 0
+
+protected='^(data/(raw|processed|llm_cache)/|out/|research/quarantine/|eval/.*(answer[-_]?key|answerkey))'
+offenders="$(printf '%s\n' "$staged" | grep -Ei "$protected" | grep -Ev '/\.gitkeep$' || true)"
+
+if [ -n "$offenders" ]; then
+  {
+    echo ""
+    echo "  x COMMIT BLOCKED - protected evidence or answer-key path staged:"
+    printf '%s\n' "$offenders" | sed 's/^/      /'
+    echo ""
+    echo "  Keep raw/processed evidence and real-run outputs outside Git."
+    echo ""
+  } >&2
+  exit 1
+fi
+
+exit 0

@@ -1,0 +1,8 @@
+id,package_name,review,date,star,version_id
+101,org.wordpress.android,"Export   is slow",2017-01-01,2,10
+102,org.wordpress.android,Export is slow,2017-02-01,2,11
+103,org.wordpress.android,Export is slow,2017-03-01,5,12
+104,org.wordpress.android,"Needs offline editing",2017-04-01,1,12
+105,org.wordpress.android,"   ",2017-04-02,3,12
+106,org.wordpress.android,Broken rating,2017-04-03,9,12
+201,org.ppsspp.ppsspp,Game is fast,2017-04-04,5,4
