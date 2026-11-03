@@ -84,7 +84,8 @@ select = ["E", "F", "I", "B", "UP", "SIM"]
 "report.py" = ["E501"]
 
 [tool.mypy]
-python_version = "3.11"
+# No pinned python_version: mypy targets the running interpreter, as CI does per
+# matrix entry. Pinning 3.11 breaks on 3.12+ because newer NumPy stubs use `type`.
 warn_unused_configs = true
 check_untyped_defs = true
 disallow_any_generics = true

@@ -16,6 +16,7 @@
   <a href="https://github.com/GEV44/silent-stakeholder/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/GEV44/silent-stakeholder/actions/workflows/ci.yml/badge.svg"></a>
   <img alt="Python 3.11–3.13" src="https://img.shields.io/badge/Python-3.11–3.13-3776AB?logo=python&logoColor=white">
   <img alt="Offline-first" src="https://img.shields.io/badge/demo-offline--first-0F766E">
+  <a href="LICENSE"><img alt="License: all rights reserved" src="https://img.shields.io/badge/license-all%20rights%20reserved-lightgrey"></a>
 </p>
 
 ## What it does
@@ -192,9 +193,9 @@ config/              versioned application and pipeline configuration
 examples/demo/       publishable synthetic inputs and generated release artifacts
 tests/               unit, integration, determinism, provenance, privacy, and security tests
 docs/                architecture, governance, data/model cards, and live report
-scripts/              offline production and reviewer-packet gates
-app.py                read-only Streamlit artifact explorer
-report.py             validated self-contained HTML exporter
+scripts/             offline production and reviewer-packet gates
+app.py               read-only Streamlit artifact explorer
+report.py            validated self-contained HTML exporter
 ```
 
 ## Scope and limitations
