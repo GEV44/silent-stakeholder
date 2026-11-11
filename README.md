@@ -217,3 +217,8 @@ of decision—not buried in a methodology appendix.
 
 Copyright © 2026 GEV44. All rights reserved. This repository is publicly viewable but is not
 open-source licensed; see [LICENSE](LICENSE).
+
+## Need something like this?
+
+Built by **Gevorg Hovhannisyan**, AI engineer in Yerevan (RAG assistants, LLM agents, bots, automations, AI video).
+[Portfolio](https://gev44.github.io) · [Telegram @hovhannisyan77](https://t.me/hovhannisyan77)
