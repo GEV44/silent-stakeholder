@@ -66,3 +66,16 @@ def test_rank_keeps_only_strongest_duplicate_need_title():
     stronger["latent_need"] = "  reliable   uploads "
     ranked = rank_gaps([weaker, stronger], top_k=5)
     assert [gap["id"] for gap in ranked] == ["G0002"]
+
+
+def test_rank_rejects_non_numeric_score_with_gap_id():
+    bad = _gap("Gbad", "high", 5.0)
+    with pytest.raises(ValueError, match="Gbad"):
+        rank_gaps([bad])
+
+
+def test_rank_rejects_nan_inputs():
+    with pytest.raises(ValueError, match="calibrated_confidence"):
+        rank_score(float("nan"), 5.0)
+    with pytest.raises(ValueError, match="opportunity_score"):
+        rank_score(0.5, float("nan"))

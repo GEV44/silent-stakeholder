@@ -852,6 +852,12 @@ def build_parser() -> argparse.ArgumentParser:
         "(reproducibility checks are meaningless against a copy)",
     )
 
+    summary_parser = subparsers.add_parser(
+        "summary", help="print a plain-language Markdown briefing from finished artifacts"
+    )
+    summary_parser.add_argument("--artifacts", type=Path, default=ROOT / "examples" / "demo")
+    summary_parser.add_argument("--out", type=Path, help="also write the briefing to this file")
+
     doctor_parser = subparsers.add_parser(
         "doctor", help="show safe configuration and optionally test live Gemini access"
     )
@@ -909,6 +915,14 @@ def main(argv: Sequence[str] | None = None) -> int:
                 f"demo regenerated through the pipeline: {counts['top_gaps']} top gaps from "
                 f"{counts['signals']} synthetic signals -> {args.out_dir.resolve()}"
             )
+            return 0
+        if args.command == "summary":
+            from src.summary import load_briefing, render_markdown
+
+            text = render_markdown(load_briefing(args.artifacts))
+            if args.out:
+                args.out.write_text(text, encoding="utf-8")
+            sys.stdout.buffer.write(text.encode("utf-8") + b"\n")
             return 0
         if args.command == "doctor":
             print(json.dumps(doctor(live=args.live), indent=2, sort_keys=True))

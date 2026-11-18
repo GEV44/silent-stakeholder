@@ -7,6 +7,7 @@
 </p>
 
 <p align="center">
+  <a href="https://gev44.github.io/silent-stakeholder-demo/">Live demo</a> ·
   <a href="https://gev44.github.io/silent-stakeholder/">Live report</a> ·
   <a href="docs/ARCHITECTURE.md">Architecture</a> ·
   <a href="docs/THREAT_MODEL.md">Threat model</a>
@@ -17,6 +18,15 @@
   <img alt="Python 3.11–3.13" src="https://img.shields.io/badge/Python-3.11–3.13-3776AB?logo=python&logoColor=white">
   <img alt="Offline-first" src="https://img.shields.io/badge/demo-offline--first-0F766E">
 </p>
+
+## The problem
+
+Roadmaps are shaped by the loudest voices. Thousands of app-store reviews sit unread, and when
+someone does summarize them the result is a word cloud nobody can audit. Product teams need to know
+which user needs the roadmap ignores or misreads, and they need proof they can check.
+
+**Try it:** [live demo](https://gev44.github.io/silent-stakeholder-demo/), or run
+`python -m src.run summary` for a one-page briefing from the committed synthetic artifacts.
 
 ## What it does
 
@@ -70,27 +80,18 @@ pads a list to hit a target, and the empty fifth slot is not a claim that no alt
 
 ## Pipeline
 
-```text
-reviews + GitHub roadmap
-        │
-        ▼
-ingest ── stable IDs, deduplication, provenance, temporal scope
-        │
-        ▼
-needs ─── clustering, aspect sentiment, JTBD/Kano framing
-        │
-        ▼
-gaps ──── roadmap retrieval, framing comparison, closed-history guard
-        │
-        ▼
-verify ── citation allowlists, exact span checks, critique filter
-        │
-        ▼
-rank ───── evidence score × review-derived priority proxy
-        │
-        ├── versioned JSON + hash-bound run manifest
-        ├── read-only Streamlit explorer
-        └── self-contained, CSP-hardened HTML report
+```mermaid
+flowchart TD
+    A[App-store reviews CSV] --> C
+    B[GitHub roadmap issues] --> C
+    C["ingest: stable IDs, dedup, provenance"] --> D["needs: clustering, sentiment, JTBD/Kano"]
+    D --> E["gaps: roadmap retrieval, framing check, closed-history guard"]
+    E --> F["verify: citation allowlists, exact span checks"]
+    F --> G["rank: evidence score x priority proxy"]
+    G --> H[Versioned JSON + hash-bound run manifest]
+    H --> I[Streamlit explorer]
+    H --> J[CSP-hardened HTML report]
+    H --> K["summary: Markdown briefing"]
 ```
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for stage contracts and
@@ -122,6 +123,13 @@ python -m streamlit run app.py
 
 # bash/zsh
 FIRECODE_OUTPUT_DIR=out/demo python -m streamlit run app.py
+```
+
+Print a plain-language briefing (verdict, score, closest roadmap item, one user quote per
+finding) from any finished artifact directory; bad or missing artifacts fail with a clear message:
+
+```bash
+python -m src.run summary --artifacts examples/demo --out briefing.md
 ```
 
 Generate a validated, portable public report:

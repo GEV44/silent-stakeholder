@@ -75,11 +75,15 @@ def rank_gaps(
         opportunity_value = gap.get("opportunity_score")
         if confidence_value is None or opportunity_value is None:
             continue
-        confidence = float(confidence_value)
-        opportunity = float(opportunity_value)
-        if confidence < min_confidence:
-            continue
-        score = rank_score(confidence, opportunity)
+        gap_label = gap.get("id") or "<unknown>"
+        try:
+            confidence = float(confidence_value)
+            opportunity = float(opportunity_value)
+            if confidence < min_confidence:
+                continue
+            score = rank_score(confidence, opportunity)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"gap {gap_label}: invalid score ({exc})") from exc
         gap["rank_score"] = round(score, 6)
         candidates.append(gap)
 
