@@ -30,7 +30,7 @@
     "label_count": 0,
     "status": "uncalibrated_evidence_score_not_probability"
   },
-  "code_version": "d1f9e00a2a37311ab7e0bbf7c6b0d0e7d33b8a4b",
+  "code_version": "be012ed0864b5061577aee161edb5807714bf681",
   "counts": {
     "candidate_gaps": 4,
     "needs": 4,
@@ -49,7 +49,7 @@
     "model": null,
     "requested_backend": "hashing"
   },
-  "generated_at": "2026-11-18T20:43:02.289405+00:00",
+  "generated_at": "2026-11-19T07:00:58.374266+00:00",
   "inputs": {
     "roadmap_sha256": "6d8756909679d5c2e3a96c822f5f66104603c2c953bb6357d301fb9b89a685e7",
     "signals_sha256": "71d2f9d79bec8e7d492b1b1af84745f2b1a8a26df826bd8c4e513b55c9917999"
@@ -79,7 +79,7 @@
       "src/rank.py",
       "src/run.py"
     ],
-    "inference_contract_sha256": "cb1f21e2079c89c570af4e86607dda712e1035d358830400282a8332e499ce19",
+    "inference_contract_sha256": "a6b08641a1cd04e6beb1fd1d55cc3729ac2c4350817b98e7bfcda2c35037b897",
     "pipeline_config_sha256": "d4ac9ee65e9348d5cc140757d777539551ea9dff3cf812abbda373a364ea5d0c",
     "random_seed": 42
   },
